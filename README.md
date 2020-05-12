@@ -46,7 +46,7 @@ int fib(const int n){
 ```
 
 ## Task 2 - Calculate Pseudo-Random Integers with a Linear Congruential Generator (LCG)
-The **LCG** computes the sequence: $x_{n+1} = (ax_n +b) \;{\rm mod}\; 2^N$ which generates random numbers in the range $[0 \to (2^N-1)]$ for suitably chosen values of $a$ , $b$ and $N$. Typically, $N =$ `computer word length` so that the modulus operation is simply truncating the binary representation as word length is a power of 2. 
+The **LCG** computes the sequence: ![x_{n+1} = (ax_n +b) \;{\rm mod}\; 2^N](https://render.githubusercontent.com/render/math?math=x_%7Bn%2B1%7D%20%3D%20(ax_n%20%2Bb)%20%5C%3B%7B%5Crm%20mod%7D%5C%3B%202%5EN) which generates random numbers in the range ![\[0 \to (2^N-1)\]](https://render.githubusercontent.com/render/math?math=%5B0%20%5Cto%20(2%5EN-1)%5D) for suitably chosen values of ![a](https://render.githubusercontent.com/render/math?math=a) , ![b](https://render.githubusercontent.com/render/math?math=b) and ![N](https://render.githubusercontent.com/render/math?math=N). Typically, ![N =](https://render.githubusercontent.com/render/math?math=N%20%3D)`computer word length` so that the modulus operation is simply truncating the binary representation as word length is a power of 2. 
 
 This operation requires **multiplication**. 
 
@@ -64,7 +64,7 @@ This operation requires **multiplication**.
   ```
 
 Typical values in this code would have $a=25385, b =3, n=8$.
-You might try to investigate which values of a, b lead to optimal generators, achieving the longest possible sequence before it repeats. Parameter $s$ is a seed – it defines *a starting point for the sequence.*
+You might try to investigate which values of a, b lead to optimal generators, achieving the longest possible sequence before it repeats. Parameter s is a seed – it defines *a starting point for the sequence.*
 
 ## Traverse a Linked List to Find an Item
 This example steps through **items in a linked list** and **search for a given value.** Since each item in the list is reached by a *pointer* in the previous item, the CPU must use an efficient form of *indirect addressing* to traverse the data.
@@ -90,7 +90,7 @@ You will need to create a **linked list** in your RAM initialisation data to tes
 ### Speed
 - Evaluated counting the *number of CPU cycles* required for the benchmarks and how the figure changes based on **problem size** and **implementation design**. 
 - Use Quartus to find **maximum clock speed of design.** `Need to get detailed instructions`, hence calculating ***minimum execution time*** in microseconds. 
-- When trading off performance of each circuit you should minimise the **geometric mean time** $(T_1,T_2,T_3)^{(1/3)}$ where $T_1,T_2,T_3$ are the times of each algorithm. 
+- When trading off performance of each circuit you should minimise the **geometric mean time**  ![(T_1,T_2,T_3)^{(1/3)}](https://render.githubusercontent.com/render/math?math=(T_1%2CT_2%2CT_3)%5E%7B(1%2F3)%7D) where ![T_1,T_2,T_3](https://render.githubusercontent.com/render/math?math=T_1%2CT_2%2CT_3) are the times of each algorithm. 
 
 ### Power Consumption
 - Relates approximately to *number of logic gates* and the *clock speed.* 
