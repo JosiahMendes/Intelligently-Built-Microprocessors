@@ -1,0 +1,38 @@
+
+module CBitIdentifier(input A[0..15], input B[0..15], input C_in, output C_out);
+
+wire D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R;
+
+assign D = A[15]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]|B[5]|B[4]|B[3]|B[2]|B[1]);
+
+assign E = A[14]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]|B[5]|B[4]|B[3]|B[2]);
+
+assign F = A[13]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]|B[5]|B[4]|B[3]);
+
+assign G = A[12]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]|B[5]|B[4]);
+
+assign H = A[11]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]|B[5]);
+
+assign I = A[10]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]|B[6]);
+
+assign J = A[9]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]|B[7]);
+
+assign K = A[8]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]|B[8]);
+
+assign L = A[7]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]|B[9]);
+
+assign M = A[6]&(B[15]|B[14]|B[13]|B[12]|B[11]|B[10]);
+
+assign N = A[5]&(B[15]|B[14]|B[13]|B[12]|B[11]);
+
+assign O = A[4]&(B[15]|B[14]|B[13]|B[12]);
+
+assign P = A[3]&(B[15]|B[14]|B[13]);
+
+assign Q = A[2]&(B[15]|B[14]);
+
+assign R = A[1]&(B[15]);
+
+assign C_out = C_in|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R;
+
+endmodule
