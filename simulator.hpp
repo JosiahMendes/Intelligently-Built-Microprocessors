@@ -16,6 +16,7 @@ private:
     int pc;
     int m_carry;
     map<int,pair<string,int>> m_instructions;
+    map<string,string> memory; // location and data written as string
 public:
     CPU() {
         reg0 = "0000000000000000";
@@ -40,6 +41,14 @@ public:
         cout << "reg3: " << reg3 << endl;
         cout << "PC: " << pc << endl;
         cout << "Carry: " << m_carry << endl;
+        for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
+            cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
+        }
+    }
+
+    void ADM_test() {
+        memory.insert(pair<string,string>("0000000000000100","0000000000001000"));
+        memory.insert(pair<string,string>("0000000010001000","0000100000000000"));
     }
 
     // Rn := Rn + Rm + Cin
@@ -107,7 +116,31 @@ public:
         }
     }
 
-    
+    // R0 := R0 + Mem[N], carry always written
+    void ADM(string immediate) {
+        assert(immediate.length() == 11);
+        string immediate_16 = immediate;
+        for(int i = 0; i < 5; i++) {
+            immediate_16 = "0" + immediate_16;
+        }
+        assert(immediate_16.length() == 16);
+        string register_R0 = reg0;
+        map<string,string>::iterator it = memory.find(immediate_16);
+        string data;
+        if(it != memory.end()) { // found Mem[N]
+            data = it->second;
+        } else {
+            data = "0000000000000000";
+        }
+        assert(data.length() == 16);
+        pair<string,bool> result = addition(reg0, data, 0); // cin = 0
+        reg0 = result.first;
+        if(result.second) { // if cout = 1
+            m_carry = 1;
+        } else {
+            m_carry = 0;
+        }
+    }
 
     // logical shift left by n
     string left_shift(string immediate, int n) {
