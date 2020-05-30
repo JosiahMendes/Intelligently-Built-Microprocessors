@@ -390,6 +390,91 @@ public:
         }
     }
 
+    // Rn := N
+    void LDI(string immediate) { // only 3 bits for instruction, so 13 bits for immediate
+        assert(immediate.length() == 13);
+        string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
+        string immediate_value_16 = "00000";
+        for(int i = 12-10; i <= 12-0; i++) {
+            immediate_value_16 = immediate_value_16 + immediate[i];
+        }
+        assert(immediate_value_16.length() == 16);
+        if(which_register == "00") {
+            reg0 = immediate_value_16;
+        } else if(which_register == "01") {
+            reg1 = immediate_value_16;
+        } else if(which_register == "10") {
+            reg2 = immediate_value_16;
+        } else if(which_register == "11") {
+            reg3 = immediate_value_16;
+        }
+    }
+
+    // Rn := Mem[N]
+    void LDR(string immediate) {
+        assert(immediate.length() == 13);
+        string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
+        string register_holding_address = string(1,immediate[12-9])+string(1,immediate[12-8]);
+        string r_a_value;
+        if(register_holding_address == "00") {
+            r_a_value = reg0;
+        } else if(register_holding_address == "01") {
+            r_a_value = reg1;
+        } else if(register_holding_address == "10") {
+            r_a_value = reg2;
+        } else if(register_holding_address == "11") {
+            r_a_value = reg3;
+        }
+        assert(r_a_value.length() == 16);
+        pair<string,bool> sum;
+        if(immediate[12-10] == '0') { // register with immediate offset. Rn := mem[Ra+N]
+            string immediate_value_16 = "00000000";
+            for(int i = 12-7; i <= 12-0; i++) {
+                immediate_value_16 = immediate_value_16 + immediate[i];
+            }
+            assert(immediate_value_16.length() == 16);
+            sum = addition(r_a_value,immediate_value_16,0);
+        } else if(immediate[12-10] == '1') { // register with scaled register offset. Rn := mem[Ra+Rb<<s]
+            string register_holding_offset = string(1,immediate[12-7])+string(1,immediate[12-6]);
+            string r_b_value;
+            if(register_holding_offset == "00") {
+                r_b_value = reg0;
+            } else if(register_holding_offset == "01") {
+                r_b_value = reg1;
+            } else if(register_holding_offset == "10") {
+                r_b_value = reg2;
+            } else if(register_holding_offset == "11") {
+                r_b_value = reg3;
+            }
+            assert(r_b_value.length() == 16);
+            string shift_value;
+            for(int i = 12-5; i <= 12-0; i++) {
+                shift_value = shift_value + immediate[i];
+            }
+            assert(shift_value.length() == 6);
+            string shifted_r_b = left_shift(r_b_value,stoi(shift_value,nullptr,2));
+            sum = addition(r_a_value,shifted_r_b,0);
+        }
+        assert(sum.first.length() == 16);
+        map<string,string>::iterator it = memory.find(sum.first);
+        string loaded_value;
+        if(it != memory.end()) { // found
+            loaded_value = it->second;
+        } else { // not found
+            loaded_value = "0000000000000000";
+        }
+        assert(loaded_value.length() == 16);
+        if(which_register == "00") {
+            reg0 = loaded_value;
+        } else if(which_register == "01") {
+            reg1 = loaded_value;
+        } else if(which_register == "10") {
+            reg2 = loaded_value;
+        } else if(which_register == "11") {
+            reg3 = loaded_value;
+        }
+    }
+
     // logical shift left by n
     string left_shift(string immediate, int n) {
         assert(immediate.length() == 16);
