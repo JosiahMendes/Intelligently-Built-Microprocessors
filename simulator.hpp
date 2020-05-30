@@ -34,6 +34,29 @@ public:
         reg3 = "0000000000000100"; // 0x4
     }
 
+    void load(int reg, string value) {
+        switch(reg) {
+            case 0:
+                reg0 = value;
+                break;
+            case 1:
+                reg1 = value;
+                break;
+            case 2:
+                reg2 = value;
+                break;
+            case 3:
+                reg3 = value;
+                break;
+        };
+    }
+
+    void store(string location, string data) {
+        assert(location.length() == 16);
+        assert(data.length() == 16);
+        memory.insert(pair<string,string>(location,data));
+    }
+
     void show_content() {
         cout << "reg0: " << reg0 << endl;
         cout << "reg1: " << reg1 << endl;
@@ -44,13 +67,6 @@ public:
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
         }
-    }
-
-    void ADM_test() {
-        memory.insert(pair<string,string>("0000000000000100","0000000000001000"));
-        memory.insert(pair<string,string>("0000000010001000","0000100000000000"));
-        reg0 = "0000100010001000";
-        reg1 = "0000000010001000";
     }
 
     // Rn := Rn + Rm + Cin
@@ -230,6 +246,94 @@ public:
         }
     }
 
+    // Rn := Rn * Rm + cin
+    void MLR(string immediate) {
+        assert(immediate.length() == 11);
+        bool write_carry = false; // assuming instr[10] = 0
+        if(immediate[10-10] == '1') { // if instr[10] = 1, write carry
+            write_carry = true;
+        }
+        string register_Rx = get_register_value(string(1,immediate[10-5])+string(1,immediate[10-4])); // instr[5..4] gives register Rx
+        assert(register_Rx.length() == 16);
+        string register_Rn = get_register_value(string(1,immediate[10-3])+string(1,immediate[10-2])); // instr[3..2] gives register Rn
+        assert(register_Rn.length() == 16);
+        string register_Rm = get_register_value(string(1,immediate[10-1])+string(1,immediate[10-0])); // instr[1..0] gives register Rm
+        assert(register_Rm.length() == 16);
+        int carry_in = 0; // assuming instr[9..8] = 00
+        string which_carry_in = string(1,immediate[10-9]) + string(1,immediate[10-8]);
+        if(which_carry_in == "01") { // if instr[9..8] = 01, cin = 1
+            carry_in = 1;
+        } else if(which_carry_in == "10") { // if instr[9..8] = 10, cin = carry
+            carry_in = m_carry;
+        } else if(which_carry_in == "11") { // if instr[9..8] = 11, cin = MSB of Rm
+            if(register_Rm[15-15] == '0') {
+                carry_in = 0;
+            } else if(register_Rm[15-15] == '1') {
+                carry_in = 1;
+            }
+        }
+        string immediate_offset = string(1,immediate[10-7]) + string(1,immediate[10-6]);
+        pair<string,bool> result;
+        if(immediate_offset == "00") { // no offset
+            result = multiplication(register_Rn, register_Rm, carry_in);
+        } else if(immediate_offset == "01") { // + Rx
+            pair<string,bool> temp_result = multiplication(register_Rn, register_Rm, carry_in);
+            result = addition(temp_result.first, register_Rx, 0);
+            if(temp_result.second) { // if overflow happens in temp_result
+                result.second = true;
+            }
+        } else if(immediate_offset == "10") { // Rm logical shift left by Rx
+            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            result = multiplication(register_Rn, shifted_Rm, carry_in);
+        } else if(immediate_offset == "11") { // Rm logical shift right by Rx
+            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            result = multiplication(register_Rn, shifted_Rm, carry_in);
+        }
+        assert(result.first.length() == 16);
+        if(string(1,immediate[10-3])+string(1,immediate[10-2]) == "00") { // if Rn = reg0
+            reg0 = result.first;
+        } else if(string(1,immediate[10-3])+string(1,immediate[10-2]) == "01") { // if Rn = reg1
+            reg1 = result.first;
+        } else if(string(1,immediate[10-3])+string(1,immediate[10-2]) == "10") { // if Rn = reg2
+            reg2 = result.first;
+        } else if(string(1,immediate[10-3])+string(1,immediate[10-2]) == "11") { // if Rn = reg3
+            reg3 = result.first;
+        }
+        if(write_carry) {
+            if(result.second) {
+                m_carry = 1;
+            } else {
+                m_carry = 0;
+            }
+        }
+    }
+
+    // R0 := R0 * Mem[N]
+    void MLM(string immediate) {
+        assert(immediate.length() == 11);
+        string immediate_16 = immediate;
+        for(int i = 0; i < 5; i++) {
+            immediate_16 = "0" + immediate_16;
+        }
+        assert(immediate_16.length() == 16);
+        string register_R0 = reg0;
+        map<string,string>::iterator it = memory.find(immediate_16);
+        string data;
+        if(it != memory.end()) { // found Mem[N]
+            data = it->second;
+        } else {
+            data = "0000000000000000";
+        }
+        assert(data.length() == 16);
+        pair<string,bool> result = multiplication(reg0, data, 0); // cin = 0
+        reg0 = result.first;
+        if(result.second) { // if cout = 1
+            m_carry = 1;
+        } else {
+            m_carry = 0;
+        }
+    }
+
     // logical shift left by n
     string left_shift(string immediate, int n) {
         assert(immediate.length() == 16);
@@ -300,6 +404,20 @@ public:
             // overflow = false;
         } else {
             overflow = true; // might be wrong
+        }
+        return pair<string,bool>(result_binary,overflow);
+    }
+
+    pair<string,bool> multiplication(string Rn, string Rm, int cin) {
+        bool overflow = false;
+        assert(Rn.length() == 16);
+        assert(Rm.length() == 16);
+        int Rn_value = stoi(Rn, nullptr, 2);
+        int Rm_value = stoi(Rm, nullptr, 2);
+        int result = Rn_value * Rm_value + cin;
+        string result_binary = decimal_to_binary(result);
+        if(stoi(result_binary, nullptr, 2) < result) { // overflow happened
+            overflow = true;
         }
         return pair<string,bool>(result_binary,overflow);
     }
