@@ -334,6 +334,62 @@ public:
         }
     }
 
+    // Rn := Rn + N, carry always written
+    void ADI(string immediate) {
+        assert(immediate.length() == 11);
+        string register_Rn = get_register_value(string(1,immediate[10-10])+string(1,immediate[10-9]));
+        string immediate_value_16 = "0000000";
+        for(int i = 10-8; i <= 10-0; i++) {
+            immediate_value_16 = immediate_value_16 + immediate[i];
+        }
+        assert(immediate_value_16.length() == 16);
+        pair<string,bool> result = addition(register_Rn,immediate_value_16,0);
+        assert(result.first.length() == 16);
+        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        if(which_register == "00") {
+            reg0 = result.first;
+        } else if(which_register == "01") {
+            reg1 = result.first;
+        } else if(which_register == "10") {
+            reg2 = result.first;
+        } else if(which_register == "11") {
+            reg3 = result.first;
+        }
+        if(result.second) {
+            m_carry = 1;
+        } else {
+            m_carry = 0;
+        }
+    }
+
+    // Rn := Rn - N
+    void SBI(string immediate) {
+        assert(immediate.length() == 11);
+        string register_Rn = get_register_value(string(1,immediate[10-10])+string(1,immediate[10-9]));
+        string immediate_value_16 = "0000000";
+        for(int i = 10-8; i <= 10-0; i++) {
+            immediate_value_16 = immediate_value_16 + immediate[i];
+        }
+        assert(immediate_value_16.length() == 16);
+        pair<string,bool> result = subtraction(register_Rn,immediate_value_16,0);
+        assert(result.first.length() == 16);
+        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        if(which_register == "00") {
+            reg0 = result.first;
+        } else if(which_register == "01") {
+            reg1 = result.first;
+        } else if(which_register == "10") {
+            reg2 = result.first;
+        } else if(which_register == "11") {
+            reg3 = result.first;
+        }
+        if(result.second) {
+            m_carry = 1;
+        } else {
+            m_carry = 0;
+        }
+    }
+
     // logical shift left by n
     string left_shift(string immediate, int n) {
         assert(immediate.length() == 16);
