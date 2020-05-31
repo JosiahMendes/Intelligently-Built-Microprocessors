@@ -98,9 +98,9 @@ public:
             } else if(current_instruction == "BFE") {
                 //BFE(current_immediate);
             } else if(current_instruction == "XSL") {
-                //XSL(current_immediate);
+                XSL(current_immediate);
             } else if(current_instruction == "XSR") {
-                //XSR(current_immediate);
+                XSR(current_immediate);
             } else if(current_instruction == "ADI") {
                 ADI(current_immediate);
             } else if(current_instruction == "SBI") {
@@ -630,7 +630,127 @@ public:
         pc++;
     }
 
-    // logical shift left by n
+    // Rn := Rm XSL N
+    void XSL(string immediate) {
+        assert(immediate.length() == 11);
+        bool write_carry = false; // assuming instr[10] = 0
+        if(immediate[10-10] == '1') { // if instr[10] = 1, write carry
+            write_carry = true;
+        }
+        string register_Rm = get_register_value(string(1,immediate[10-1])+string(1,immediate[10-0]));
+        assert(register_Rm.length() == 16);
+        string which_carry_in = string(1,immediate[10-9])+string(1,immediate[10-8]);
+        char carry_in = '0'; // assuming instr[9..8] = 00
+        if(which_carry_in == "01") {
+            carry_in = '1';
+        } else if(which_carry_in == "10") {
+            if(m_carry == 0) {
+                carry_in = '0';
+            } else if(m_carry == 1) {
+                carry_in = '1';
+            }
+        } else if(which_carry_in == "11") {
+            if(register_Rm[0] == '0') {
+                carry_in = '0';
+            } else if(register_Rm[0] == '1') {
+                carry_in = '1';
+            }
+        }
+        string immediate_value;
+        for(int i = 10-7; i <= 10-4; i++) {
+            immediate_value = immediate_value + immediate[i];
+        }
+        assert(immediate_value.length() == 4);
+        string result = register_Rm;
+        int n = stoi(immediate_value,nullptr,2);
+        for(int i = 0; i <= 15-n; i++) {
+            result[i] = register_Rm[i+n];
+        }
+        for(int i = 16-n; i < 16; i++) {
+            result[i] = carry_in;
+        }
+        assert(result.length() == 16);
+        string Rn = string(1,immediate[10-3])+string(1,immediate[10-2]);
+        if(Rn == "00") {
+            reg0 = result;
+        } else if(Rn == "01") {
+            reg1 = result;
+        } else if(Rn == "10") {
+            reg2 = result;
+        } else if(Rn == "11") {
+            reg3 = result;
+        }
+        if(write_carry) {
+            if(n > 0 && register_Rm[0] == '1') {
+                m_carry = 1;
+            } else {
+                m_carry = 0;
+            }
+        }
+        pc++;
+    }
+
+    // Rn := Rm XSR N
+    void XSR(string immediate) {
+        assert(immediate.length() == 11);
+        bool write_carry = false; // assuming instr[10] = 0
+        if(immediate[10-10] == '1') { // if instr[10] = 1, write carry
+            write_carry = true;
+        }
+        string register_Rm = get_register_value(string(1,immediate[10-1])+string(1,immediate[10-0]));
+        assert(register_Rm.length() == 16);
+        string which_carry_in = string(1,immediate[10-9])+string(1,immediate[10-8]);
+        char carry_in = '0'; // assuming instr[9..8] = 00
+        if(which_carry_in == "01") {
+            carry_in = '1';
+        } else if(which_carry_in == "10") {
+            if(m_carry == 0) {
+                carry_in = '0';
+            } else if(m_carry == 1) {
+                carry_in = '1';
+            }
+        } else if(which_carry_in == "11") {
+            if(register_Rm[0] == '0') {
+                carry_in = '0';
+            } else if(register_Rm[0] == '1') {
+                carry_in = '1';
+            }
+        }
+        string immediate_value;
+        for(int i = 10-7; i <= 10-4; i++) {
+            immediate_value = immediate_value + immediate[i];
+        }
+        assert(immediate_value.length() == 4);
+        string result = register_Rm;
+        int n = stoi(immediate_value,nullptr,2);
+        for(int i = n; i <= 15; i++) {
+            result[i] = register_Rm[i-n];
+        }
+        for(int i = 0; i < n; i++) {
+            result[i] = carry_in;
+        }
+        assert(result.length() == 16);
+        string Rn = string(1,immediate[10-3])+string(1,immediate[10-2]);
+        if(Rn == "00") {
+            reg0 = result;
+        } else if(Rn == "01") {
+            reg1 = result;
+        } else if(Rn == "10") {
+            reg2 = result;
+        } else if(Rn == "11") {
+            reg3 = result;
+        }
+        if(write_carry) {
+            if(n > 0 && register_Rm[15] == '1') {
+                m_carry = 1;
+            } else {
+                m_carry = 0;
+            }
+        }
+        pc++;
+    }
+
+    // logical shift left by n, used for immediate offset
     string left_shift(string immediate, int n) {
         assert(immediate.length() == 16);
         string result = immediate;
@@ -644,7 +764,7 @@ public:
         return result;
     }
 
-    // logical shift right by n
+    // logical shift right by n, used for immediate offset
     string right_shift(string immediate, int n) {
         assert(immediate.length() == 16);
         string result = immediate;
