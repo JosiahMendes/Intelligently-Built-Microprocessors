@@ -475,6 +475,35 @@ public:
         }
     }
 
+    // Mem[N] = Rn
+    void STA(string immediate) {
+        assert(immediate.length() == 13);
+        string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
+        assert(which_register.length() == 2);
+        string store_value;
+        if(which_register == "00") {
+            store_value = reg0;
+        } else if(which_register == "01") {
+            store_value = reg1;
+        } else if(which_register == "10") {
+            store_value = reg2;
+        } else if(which_register == "11") {
+            store_value = reg3;
+        }
+        assert(store_value.length() == 16);
+        string location = "00000";
+        for(int i = 12-10; i <= 12-0; i++) {
+            location = location + immediate[i];
+        }
+        assert(location.length() == 16);
+        map<string,string>::iterator it = memory.find(location);
+        if(it != memory.end()) { // found
+            it->second = store_value;
+        } else { // not found
+            memory.insert(pair<string,string>(location,store_value));
+        }
+    }
+
     // logical shift left by n
     string left_shift(string immediate, int n) {
         assert(immediate.length() == 16);
