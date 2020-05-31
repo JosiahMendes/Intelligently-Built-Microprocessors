@@ -15,7 +15,7 @@ private:
     string reg3; // assuming reg 11
     int pc;
     int m_carry;
-    map<int,pair<string,int>> m_instructions;
+    map<int,pair<string,string>> m_instructions;
     map<string,string> memory; // location and data written as string
 public:
     CPU() {
@@ -27,11 +27,125 @@ public:
         m_carry = 0;
     }
 
-    void update() {
-        reg0 = "0000000000000001"; // 0x1
-        reg1 = "0000000000000010"; // 0x2
-        reg2 = "0000000000000011"; // 0x3
-        reg3 = "0000000000000100"; // 0x4
+    // read instructions and store them in m_instructions
+    void read() {
+        string instruction;
+        string immediate;
+        int order = 0;
+        while(1) {
+            cin >> instruction;
+            if(cin.fail()) {
+                break;
+            }
+            assert(instruction.length() == 3);
+            instruction = transform_to_uppercase(instruction);
+            if(instruction == "ADR" || 
+                instruction == "ADM" ||
+                instruction == "SBR" || 
+                instruction == "SBM" ||
+                instruction == "MLR" ||
+                instruction == "MLM" ||
+                instruction == "BBO" ||
+                instruction == "BFE" ||
+                instruction == "XSL" ||
+                instruction == "XSR" ||
+                instruction == "ADI" ||
+                instruction == "SBI" ||
+                instruction == "LDI" ||
+                instruction == "LDR" ||
+                instruction == "STA" ||
+                instruction == "STI" ||
+                instruction == "PSH" ||
+                instruction == "POP" ||
+                instruction == "JMR" ||
+                instruction == "JMP" ||
+                instruction == "STP") {
+                cin >> immediate;
+                if(stoi(immediate,nullptr,2)<0) { // immediate stored as binary
+                    cout << "Error: invalid immediate value (not a binary value)" << endl;
+                    return;
+                }
+                m_instructions.insert(pair<int,pair<string,string>>(order,make_pair(instruction,immediate)));
+            }
+            else {
+                cout << "Error: " << instruction << " is not a valid instruction" << endl;
+                return;
+            }
+            order++;
+        }
+    }
+
+    // execute the corresponding instruction
+    void execute() {
+        map<int,pair<string,string>>::iterator it = m_instructions.find(pc);
+        if(it != m_instructions.end()) { // found
+            string current_instruction = it->second.first;
+            string current_immediate = it->second.second;
+            if(current_instruction == "ADR") {
+                ADR(current_immediate);
+            } else if(current_instruction == "ADM") {
+                ADM(current_immediate);
+            } else if(current_instruction == "SBR") {
+                SBR(current_immediate);
+            } else if(current_instruction == "SBM") {
+                SBM(current_immediate);
+            } else if(current_instruction == "MLR") {
+                MLR(current_immediate);
+            } else if(current_instruction == "MLM") {
+                MLM(current_immediate);
+            } else if(current_instruction == "BBO") {
+                //BBO(current_immediate);
+            } else if(current_instruction == "BFE") {
+                //BFE(current_immediate);
+            } else if(current_instruction == "XSL") {
+                //XSL(current_immediate);
+            } else if(current_instruction == "XSR") {
+                //XSR(current_immediate);
+            } else if(current_instruction == "ADI") {
+                ADI(current_immediate);
+            } else if(current_instruction == "SBI") {
+                SBI(current_immediate);
+            } else if(current_instruction == "LDI") {
+                LDI(current_immediate);
+            } else if(current_instruction == "LDR") {
+                LDR(current_immediate);
+            } else if(current_instruction == "STA") {
+                STA(current_immediate);
+            } else if(current_instruction == "STI") {
+                //STI(current_immediate);
+            } else if(current_instruction == "PSH") {
+                //PSH(current_immediate);
+            } else if(current_instruction == "POP") {
+                //POP(current_immediate);
+            } else if(current_instruction == "JMR") {
+                //JMR(current_immediate);
+            } else if(current_instruction == "JMP") {
+                //JMP(current_immediate);
+            } else if(current_instruction == "STP") {
+                //STP(current_immediate);
+            }
+        } else { // didn't find instruction
+            cout << "no instruction found for the current pc value: " << pc;
+        }
+        show_content();
+    }
+
+    // run the instructions stored in m_instructions
+    void run() {
+        for(int i = 0; i < m_instructions.size(); i++) {
+            execute();
+        }
+    }
+
+    // test function to check if read() works
+    void print_instructions() {
+        if(m_instructions.empty()) {
+            cout << "no instructions" << endl;
+        } else {
+            for(map<int,pair<string,string>>::iterator it = m_instructions.begin(); it != m_instructions.end(); ++it) {
+                cout << "PC: " << it->first << " " << "Instruction: " << it->second.first << " " << "Immediate: " << it->second.second << endl;
+            }
+        }
     }
 
     void load(int reg, string value) {
@@ -67,6 +181,7 @@ public:
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
         }
+        cout << "Uninitialized memory is zeroed" << endl;
     }
 
     // Rn := Rn + Rm + Cin
@@ -130,6 +245,7 @@ public:
                 m_carry = 0;
             }
         }
+        pc++;
     }
 
     // R0 := R0 + Mem[N], carry always written
@@ -156,6 +272,7 @@ public:
         } else {
             m_carry = 0;
         }
+        pc++;
     }
 
     // Rn := Rn - Rm - cin
@@ -218,6 +335,7 @@ public:
                 m_carry = 0;
             }
         }
+        pc++;
     }
 
     // R0 := R0 - Mem[N], carry always written
@@ -244,6 +362,7 @@ public:
         } else {
             m_carry = 0;
         }
+        pc++;
     }
 
     // Rn := Rn * Rm + cin
@@ -306,6 +425,7 @@ public:
                 m_carry = 0;
             }
         }
+        pc++;
     }
 
     // R0 := R0 * Mem[N]
@@ -332,6 +452,7 @@ public:
         } else {
             m_carry = 0;
         }
+        pc++;
     }
 
     // Rn := Rn + N, carry always written
@@ -360,6 +481,7 @@ public:
         } else {
             m_carry = 0;
         }
+        pc++;
     }
 
     // Rn := Rn - N
@@ -388,6 +510,7 @@ public:
         } else {
             m_carry = 0;
         }
+        pc++;
     }
 
     // Rn := N
@@ -408,6 +531,7 @@ public:
         } else if(which_register == "11") {
             reg3 = immediate_value_16;
         }
+        pc++;
     }
 
     // Rn := Mem[N]
@@ -473,6 +597,7 @@ public:
         } else if(which_register == "11") {
             reg3 = loaded_value;
         }
+        pc++;
     }
 
     // Mem[N] = Rn
@@ -502,6 +627,7 @@ public:
         } else { // not found
             memory.insert(pair<string,string>(location,store_value));
         }
+        pc++;
     }
 
     // logical shift left by n
@@ -663,6 +789,15 @@ public:
         }
         assert(binary_value.length() == 16);
         return binary_value;
+    }
+
+    // turn a string to uppercase
+    string transform_to_uppercase(string instr) {
+        string transformed = "";
+        for(int i = 0; i < instr.length(); i++) {
+            transformed += toupper(instr[i]);
+        }
+        return transformed;
     }
 };
 
