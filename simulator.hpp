@@ -9,6 +9,7 @@ using namespace std;
 
 class CPU {
 private:
+    bool stop;
     string reg0; // assuming reg 00
     string reg1; // assuming reg 01
     string reg2; // assuming reg 10
@@ -19,6 +20,7 @@ private:
     map<string,string> memory; // location and data written as string
 public:
     CPU() {
+        stop = false;
         reg0 = "0000000000000000";
         reg1 = "0000000000000000";
         reg2 = "0000000000000000";
@@ -120,9 +122,9 @@ public:
             } else if(current_instruction == "JMR") {
                 //JMR(current_immediate);
             } else if(current_instruction == "JMP") {
-                //JMP(current_immediate);
+                JMP(current_immediate);
             } else if(current_instruction == "STP") {
-                //STP(current_immediate);
+                STP(current_immediate);
             }
         } else { // didn't find instruction
             cout << "no instruction found for the current pc value: " << pc;
@@ -134,6 +136,9 @@ public:
     void run() {
         for(int i = 0; i < m_instructions.size(); i++) {
             execute();
+            if(stop) {
+                return;
+            }
         }
     }
 
@@ -182,6 +187,7 @@ public:
             cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
         }
         cout << "Uninitialized memory is zeroed" << endl;
+        cout << "\n\n";
     }
 
     // Rn := Rn + Rm + Cin
@@ -748,6 +754,18 @@ public:
             }
         }
         pc++;
+    }
+
+    // PC = N
+    void JMP(string immediate) {
+        assert(immediate.length() == 11);
+        pc = stoi(immediate,nullptr,2);
+    }
+
+    // stops the program from executing further instructions
+    void STP(string immediate) {
+        stop = true;
+        cout << "PC: " << pc << " Program stopped" << endl;
     }
 
     // logical shift left by n, used for immediate offset
