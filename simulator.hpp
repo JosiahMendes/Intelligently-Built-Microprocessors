@@ -5,6 +5,7 @@
 #include <string>
 #include <assert.h>
 #include <map>
+#include <vector>
 using namespace std;
 
 class CPU {
@@ -18,6 +19,7 @@ private:
     int m_carry;
     map<int,pair<string,string>> m_instructions;
     map<string,string> memory; // location and data written as string
+    vector<string> stack; // stack with 16 bit data stored
 public:
     CPU() {
         stop = false;
@@ -116,9 +118,9 @@ public:
             } else if(current_instruction == "STI") {
                 STI(current_immediate);
             } else if(current_instruction == "PSH") {
-                //PSH(current_immediate);
+                PSH(current_immediate);
             } else if(current_instruction == "POP") {
-                //POP(current_immediate);
+                POP(current_immediate);
             } else if(current_instruction == "JMR") {
                 JMR(current_immediate);
             } else if(current_instruction == "JMP") {
@@ -158,6 +160,15 @@ public:
         cout << "reg1: " << reg1 << endl;
         cout << "reg2: " << reg2 << endl;
         cout << "reg3: " << reg3 << endl;
+        cout << "stack: ";
+        if(stack.empty()) {
+            cout << "empty" << endl;
+        } else {
+            cout << stack.size() << endl;
+            for(int i = stack.size()-1; i >= 0; i--) {
+                cout << stack[i] << endl;
+            }
+        }
         cout << "PC: " << pc << endl;
         cout << "Carry: " << m_carry << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
@@ -761,6 +772,44 @@ public:
                 memory.insert(pair<string,string>(sum.first,register_Rn));
             }
         }
+    }
+
+    // adding to the stack
+    void PSH(string immediate) {
+        assert(immediate.length() == 11);
+        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        string pushed_value;
+        if(which_register == "00") {
+            pushed_value = reg0;
+        } else if(which_register == "01") {
+            pushed_value = reg1;
+        } else if(which_register == "10") {
+            pushed_value = reg2;
+        } else if(which_register == "11") {
+            pushed_value = reg3;
+        }
+        assert(pushed_value.length() == 16);
+        stack.push_back(pushed_value);
+        pc++;
+    }
+
+    // removing from the stack
+    void POP(string immediate) {
+        assert(immediate.length() == 11);
+        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        string popped_value = stack[stack.size()-1];
+        assert(popped_value.length() == 16);
+        if(which_register == "00") {
+            reg0 = popped_value;
+        } else if(which_register == "01") {
+            reg1 = popped_value;
+        } else if(which_register == "10") {
+            reg2 = popped_value;
+        } else if(which_register == "11") {
+            reg3 = popped_value;
+        }
+        stack.resize(stack.size()-1);
+        pc++;
     }
 
     // Rn := Rm XSL N
