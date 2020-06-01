@@ -120,7 +120,7 @@ public:
             } else if(current_instruction == "POP") {
                 //POP(current_immediate);
             } else if(current_instruction == "JMR") {
-                //JMR(current_immediate);
+                JMR(current_immediate);
             } else if(current_instruction == "JMP") {
                 JMP(current_immediate);
             } else if(current_instruction == "STP") {
@@ -754,6 +754,65 @@ public:
             }
         }
         pc++;
+    }
+
+    // PC = Rm with conditions
+    void JMR(string immediate) {
+        assert(immediate.length() == 11);
+        string condition = string(1,immediate[10-10])+string(1,immediate[10-9])+string(1,immediate[10-8]);
+        bool jump = false;
+        string register_Rn = get_register_value(string(1,immediate[10-3])+string(1,immediate[10-2]));
+        assert(register_Rn.length() == 16);
+        int Rn = stoi(register_Rn,nullptr,2);
+        string x_value = "";
+        for(int i = 10-7; i <= 10-4; i++) {
+            x_value = x_value + immediate[i];
+        }
+        assert(x_value.length() == 4);
+        int x = stoi(x_value,nullptr,2);
+        string register_Rx = get_register_value(string(1,immediate[10-5])+string(1,immediate[10-4]));
+        assert(register_Rx.length() == 16);
+        int Rx = stoi(register_Rx,nullptr,2);
+        if(condition == "000") {
+            if(Rn == 0) { // if Rn = 0
+                jump = true;
+            }
+        } else if(condition == "001") {
+            if(Rn != 0) {
+                jump = true;
+            }
+        } else if(condition == "010") {
+            if(Rn == Rx) {
+                jump = true;
+            }
+        } else if(condition == "011") {
+            if(Rn != Rx) {
+                jump = true;
+            }
+        } else if(condition == "100") {
+            if(Rn < Rx) {
+                jump = true;
+            }
+        } else if(condition == "101") {
+            if(Rn <= Rx) {
+                jump = true;
+            }
+        } else if(condition == "110") {
+            if(register_Rn[15-x] == '1') {
+                jump = true;
+            }
+        } else if(condition == "111") {
+            if(m_carry = 1) {
+                jump = true;
+            }
+        }
+        string register_Rm = get_register_value(string(1,immediate[10-1])+string(1,immediate[10-0]));
+        assert(register_Rm.length() == 16);
+        if(jump) {
+            pc = stoi(register_Rm,nullptr,2);
+        } else {
+            pc++;
+        }
     }
 
     // PC = N
