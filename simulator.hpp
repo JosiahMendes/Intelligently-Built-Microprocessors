@@ -96,9 +96,9 @@ public:
             } else if(current_instruction == "MLM") {
                 MLM(current_immediate);
             } else if(current_instruction == "BBO") {
-                //BBO(current_immediate);
+                BBO(current_immediate);
             } else if(current_instruction == "BFE") {
-                //BFE(current_immediate);
+                BFE(current_immediate);
             } else if(current_instruction == "XSL") {
                 XSL(current_immediate);
             } else if(current_instruction == "XSR") {
@@ -114,7 +114,7 @@ public:
             } else if(current_instruction == "STA") {
                 STA(current_immediate);
             } else if(current_instruction == "STI") {
-                //STI(current_immediate);
+                STI(current_immediate);
             } else if(current_instruction == "PSH") {
                 //PSH(current_immediate);
             } else if(current_instruction == "POP") {
@@ -151,29 +151,6 @@ public:
                 cout << "PC: " << it->first << " " << "Instruction: " << it->second.first << " " << "Immediate: " << it->second.second << endl;
             }
         }
-    }
-
-    void load(int reg, string value) {
-        switch(reg) {
-            case 0:
-                reg0 = value;
-                break;
-            case 1:
-                reg1 = value;
-                break;
-            case 2:
-                reg2 = value;
-                break;
-            case 3:
-                reg3 = value;
-                break;
-        };
-    }
-
-    void store(string location, string data) {
-        assert(location.length() == 16);
-        assert(data.length() == 16);
-        memory.insert(pair<string,string>(location,data));
     }
 
     void show_content() {
@@ -461,6 +438,114 @@ public:
         pc++;
     }
 
+    // Bitwise Boolean Operations, carry NOT written
+    void BBO(string immediate) {
+        assert(immediate.length() == 11);
+        string which_boolean_operation = string(1,immediate[10-10])+string(1,immediate[10-9])+string(1,immediate[10-8]);
+        string register_Rn = get_register_value(string(1,immediate[10-3])+string(1,immediate[10-2]));
+        assert(register_Rn.length() == 16);
+        string register_Rm = get_register_value(string(1,immediate[10-1])+string(1,immediate[10-0]));
+        assert(register_Rm.length() == 16);
+        string N_value = "";
+        for(int i = 10-7; i <= 10-4; i++) {
+            N_value = N_value + immediate[i];
+        }
+        assert(N_value.length() == 4);
+        int n = stoi(N_value,nullptr,2);
+        string result;
+        string zero_register = "0000000000000000";
+        if(which_boolean_operation == "000") { // Rn = N + NOT Rm
+            string not_Rm = bitwise_not(register_Rm);
+            assert(not_Rm.length() == 16);
+            pair<string,bool> sum = addition(not_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "001") { // Rn = Rn AND Rm + N
+            string Rn_and_Rm = bitwise_and(register_Rn,register_Rm);
+            assert(Rn_and_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_and_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "010") { // Rn = Rn OR Rm + N
+            string Rn_or_Rm = bitwise_or(register_Rn,register_Rm);
+            assert(Rn_or_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_or_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "011") { // Rn = Rn XOR Rm + N
+            string Rn_xor_Rm = bitwise_xor(register_Rn,register_Rm);
+            assert(Rn_xor_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_xor_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "100") { // Rn = Rn NAND Rm + N
+            string Rn_and_Rm = bitwise_and(register_Rn,register_Rm);
+            string Rn_nand_Rm = bitwise_not(Rn_and_Rm);
+            assert(Rn_nand_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_nand_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "101") { // Rn = Rn NOR Rm + N
+            string Rn_or_Rm = bitwise_or(register_Rn,register_Rm);
+            string Rn_nor_Rm = bitwise_not(Rn_or_Rm);
+            assert(Rn_nor_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_nor_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "110") { // Rn = Rn XNOR Rm + N
+            string Rn_xor_Rm = bitwise_xor(register_Rn,register_Rm);
+            string Rn_xnor_Rm = bitwise_not(Rn_xor_Rm);
+            assert(Rn_xnor_Rm.length() == 16);
+            pair<string,bool> sum = addition(Rn_xnor_Rm,zero_register,n);
+            result = sum.first;
+        } else if(which_boolean_operation == "111") { // Rn = Rm + N
+            pair<string,bool> sum = addition(register_Rm,zero_register,n);
+            result = sum.first;
+        }
+        assert(result.length() == 16);
+        string which_register = string(1,immediate[10-3])+string(1,immediate[10-2]);
+        if(which_register == "00") {
+            reg0 = result;
+        } else if(which_register == "01") {
+            reg1 = result;
+        } else if(which_register == "10") {
+            reg2 = result;
+        } else if(which_register == "11") {
+            reg3 = result;
+        }
+        pc++;
+    }
+
+    // Rn = Rm[A..B], carry NOT written
+    void BFE(string immediate) {
+        assert(immediate.length() == 12);
+        string result = "0000000000000000";
+        string register_Rm = get_register_value(string(1,immediate[11-1])+string(1,immediate[11-0]));
+        assert(register_Rm.length() == 16);
+        string index_A;
+        for(int i = 11-11; i <= 11-8; i++) {
+            index_A = index_A + immediate[i];
+        }
+        assert(index_A.length() == 4);
+        string index_B;
+        for(int i = 11-7; i <= 11-4; i++) {
+            index_B = index_B + immediate[i];
+        }
+        assert(index_B.length() == 4);
+        int a = stoi(index_A,nullptr,2);
+        int b = stoi(index_B,nullptr,2);
+        assert(a>b);
+        for(int pos = 15-a; pos <= 15-b; pos++) {
+            result[pos] = register_Rm[pos];
+        }
+        assert(result.length() == 16);
+        string which_register = string(1,immediate[11-3])+string(1,immediate[11-2]);
+        if(which_register == "00") {
+            reg0 = result;
+        } else if(which_register == "01") {
+            reg1 = result;
+        } else if(which_register == "10") {
+            reg2 = result;
+        } else if(which_register == "11") {
+            reg3 = result;
+        }
+        pc++;
+    }
+
     // Rn := Rn + N, carry always written
     void ADI(string immediate) {
         assert(immediate.length() == 11);
@@ -634,6 +719,48 @@ public:
             memory.insert(pair<string,string>(location,store_value));
         }
         pc++;
+    }
+
+    // store indirect
+    void STI(string immediate) {
+        assert(immediate.length() == 11);
+        string register_Rn = get_register_value(string(1,immediate[10-10])+string(1,immediate[10-9]));
+        assert(register_Rn.length() == 16);
+        if(immediate[10-8] == '0') { // mem[Ra + N] = Rn
+            string register_Ra = get_register_value(string(1,immediate[10-7])+string(1,immediate[10-6]));
+            assert(register_Ra.length() == 16);
+            string N_value = "0000000000";
+            for(int i = 10-5; i <= 10-0; i++) {
+                N_value = N_value + immediate[i];
+            }
+            assert(N_value.length() == 16);
+            pair<string,bool> sum = addition(register_Ra,N_value,0);
+            assert(sum.first.length() == 16);
+            map<string,string>::iterator it = memory.find(sum.first);
+            if(it != memory.end()) { // found
+                it->second = register_Rn;
+            } else { // not found
+                memory.insert(pair<string,string>(sum.first,register_Rn));
+            }
+        } else if(immediate[10-8] == '1') { // mem[Ra + Rb << s] = Rn
+            string register_Ra = get_register_value(string(1,immediate[10-7])+string(1,immediate[10-6]));
+            string register_Rb = get_register_value(string(1,immediate[10-5])+string(1,immediate[10-4]));
+            string s_value = "";
+            for(int i = 10-3; i <= 10-0; i++) {
+                s_value = s_value + immediate[i];
+            }
+            assert(s_value.length() == 4);
+            string shifted_Rb = left_shift(register_Rb,stoi(s_value,nullptr,2));
+            assert(shifted_Rb.length() == 16);
+            pair<string,bool> sum = addition(register_Ra,shifted_Rb,0);
+            assert(sum.first.length() == 16);
+            map<string,string>::iterator it = memory.find(sum.first);
+            if(it != memory.end()) { // found
+                it->second = register_Rn;
+            } else { // not found
+                memory.insert(pair<string,string>(sum.first,register_Rn));
+            }
+        }
     }
 
     // Rn := Rm XSL N
@@ -913,6 +1040,77 @@ public:
             overflow = true;
         }
         return pair<string,bool>(result_binary,overflow);
+    }
+
+    string bitwise_not(string s) {
+        assert(s.length() == 16);
+        string result = "";
+        for(int i = 0; i < 16; i++) {
+            if(s[i] == '0') {
+                result = result + '1';
+            } else if(s[i] == '1') {
+                result = result + '0';
+            }
+        }
+        assert(result.length() == 16);
+        return result;
+    }
+
+    string bitwise_and(string s1, string s2) {
+        assert(s1.length() == 16);
+        assert(s2.length() == 16);
+        string result = "";
+        for(int i = 0; i < 16; i++) {
+            if(s1[i] == '0' && s2[i] == '0') {
+                result = result + '0';
+            } else if(s1[i] == '0' && s2[i] == '1') {
+                result = result + '0';
+            } else if(s1[i] == '1' && s2[i] == '0') {
+                result = result + '0';
+            } else if(s1[i] == '1' && s2[i] == '1') {
+                result = result + '1';
+            }
+        }
+        assert(result.length() == 16);
+        return result;
+    }
+
+    string bitwise_or(string s1, string s2) {
+        assert(s1.length() == 16);
+        assert(s2.length() == 16);
+        string result = "";
+        for(int i = 0; i < 16; i++) {
+            if(s1[i] == '0' && s2[i] == '0') {
+                result = result + '0';
+            } else if(s1[i] == '0' && s2[i] == '1') {
+                result = result + '1';
+            } else if(s1[i] == '1' && s2[i] == '0') {
+                result = result + '1';
+            } else if(s1[i] == '1' && s2[i] == '1') {
+                result = result + '1';
+            }
+        }
+        assert(result.length() == 16);
+        return result;
+    }
+
+    string bitwise_xor(string s1, string s2) {
+        assert(s1.length() == 16);
+        assert(s2.length() == 16);
+        string result = "";
+        for(int i = 0; i < 16; i++) {
+            if(s1[i] == '0' && s2[i] == '0') {
+                result = result + '0';
+            } else if(s1[i] == '0' && s2[i] == '1') {
+                result = result + '1';
+            } else if(s1[i] == '1' && s2[i] == '0') {
+                result = result + '1';
+            } else if(s1[i] == '1' && s2[i] == '1') {
+                result = result + '0';
+            }
+        }
+        assert(result.length() == 16);
+        return result;
     }
 
     void decimal_to_binary_test(int n) {
