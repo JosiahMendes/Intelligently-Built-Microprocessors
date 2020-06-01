@@ -797,7 +797,12 @@ public:
     void POP(string immediate) {
         assert(immediate.length() == 11);
         string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
-        string popped_value = stack[stack.size()-1];
+        string popped_value;
+        if(stack.empty()) {
+            popped_value = "0000000000000000";
+        } else {
+            popped_value = stack[stack.size()-1];
+        }
         assert(popped_value.length() == 16);
         if(which_register == "00") {
             reg0 = popped_value;
