@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY ShiftsAndBFE
+set_global_assignment -name TOP_LEVEL_ENTITY ALU3
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:25:21  MAY 15, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
@@ -74,6 +74,32 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform4.vwf
 set_global_assignment -name BDF_FILE XSR.bdf
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform5.vwf
 set_global_assignment -name QIP_FILE TWOINPUTMUX.qip
+set_global_assignment -name BDF_FILE ShiftsAndBFEShell.bdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform6.vwf
+set_global_assignment -name QIP_FILE ADD_SUB.qip
+set_global_assignment -name VERILOG_FILE NOT16.v
+set_global_assignment -name VERILOG_FILE BAND16.v
+set_global_assignment -name VERILOG_FILE BOR16.v
+set_global_assignment -name VERILOG_FILE XOR16.v
+set_global_assignment -name VERILOG_FILE BNAND.v
+set_global_assignment -name VERILOG_FILE BNAND16.v
+set_global_assignment -name VERILOG_FILE BNOR16.v
+set_global_assignment -name VERILOG_FILE XNOR16.v
+set_global_assignment -name BDF_FILE BBO.bdf
+set_global_assignment -name QIP_FILE MUX8.qip
+set_global_assignment -name BDF_FILE BBOShell.bdf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform7.vwf
+set_global_assignment -name SYSTEMVERILOG_FILE ShiftDecoder2.sv
+set_global_assignment -name VERILOG_FILE ShiftDecoder2.v
+set_global_assignment -name QIP_FILE MUX2.qip
+set_global_assignment -name BDF_FILE ALU2.bdf
+set_global_assignment -name VERILOG_FILE ALUDecoder.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform8.vwf
+set_global_assignment -name BDF_FILE ALU3.bdf
+set_global_assignment -name QIP_FILE MUX4.qip
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform9.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform10.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform11.vwf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

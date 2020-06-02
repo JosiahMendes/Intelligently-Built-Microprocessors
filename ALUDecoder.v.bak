@@ -1,0 +1,5 @@
+module ALUDecoder(input [15:0] INSTR, output [15:0] Shift_in);
+
+
+
+endmodule

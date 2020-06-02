@@ -24,7 +24,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 408 512 576 528)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "A[15..0]" (rect 5 0 42 17)(font "Intel Clear" ))
+	(text "A[15..0]" (rect 5 0 41 17)(font "Intel Clear" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -40,7 +40,7 @@ https://fpgasoftware.intel.com/eula.
 	(input)
 	(rect 408 448 576 464)
 	(text "INPUT" (rect 125 0 153 10)(font "Arial" (font_size 6)))
-	(text "CIN" (rect 5 0 26 12)(font "Arial" ))
+	(text "CIN" (rect 5 0 25 12)(font "Arial" ))
 	(pt 168 8)
 	(drawing
 		(line (pt 84 12)(pt 109 12))
@@ -54,9 +54,9 @@ https://fpgasoftware.intel.com/eula.
 )
 (pin
 	(input)
-	(rect 888 888 904 1056)
+	(rect 888 880 904 1048)
 	(text "INPUT" (rect 0 15 10 43)(font "Arial" (font_size 6))(vertical))
-	(text "Shift_Left" (rect 0 109 17 155)(font "Intel Clear" )(vertical))
+	(text "Shift_Left" (rect 2 107 19 153)(font "Intel Clear" )(vertical))
 	(pt 8 0)
 	(drawing
 		(line (pt 12 84)(pt 12 59))
@@ -71,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 )
 (pin
 	(input)
-	(rect 904 888 920 1056)
+	(rect 904 880 920 1048)
 	(text "INPUT" (rect 0 15 10 43)(font "Arial" (font_size 6))(vertical))
 	(text "Shift_Right" (rect 1 108 18 159)(font "Intel Clear" )(vertical))
 	(pt 8 0)
@@ -88,9 +88,9 @@ https://fpgasoftware.intel.com/eula.
 )
 (pin
 	(input)
-	(rect 936 888 952 1060)
+	(rect 920 880 936 1048)
 	(text "INPUT" (rect 0 15 10 43)(font "Arial" (font_size 6))(vertical))
-	(text "INSTR[11..4]" (rect 0 109 17 166)(font "Intel Clear" )(vertical))
+	(text "BFE" (rect 0 109 17 127)(font "Intel Clear" )(vertical))
 	(pt 8 0)
 	(drawing
 		(line (pt 12 84)(pt 12 59))
@@ -105,9 +105,26 @@ https://fpgasoftware.intel.com/eula.
 )
 (pin
 	(input)
-	(rect 920 888 936 1056)
+	(rect 936 880 952 1048)
 	(text "INPUT" (rect 0 15 10 43)(font "Arial" (font_size 6))(vertical))
-	(text "BFE" (rect 0 109 17 127)(font "Intel Clear" )(vertical))
+	(text "SL[3..0]" (rect 0 109 17 144)(font "Intel Clear" )(vertical))
+	(pt 8 0)
+	(drawing
+		(line (pt 12 84)(pt 12 59))
+		(line (pt 4 84)(pt 4 59))
+		(line (pt 8 55)(pt 8 0))
+		(line (pt 12 84)(pt 4 84))
+		(line (pt 4 59)(pt 8 55))
+		(line (pt 12 59)(pt 8 55))
+	)
+	(rotate90)
+	(text "VCC" (rect 7 20 17 40)(font "Arial" (font_size 6))(vertical))
+)
+(pin
+	(input)
+	(rect 952 880 968 1048)
+	(text "INPUT" (rect 0 15 10 43)(font "Arial" (font_size 6))(vertical))
+	(text "SR[3..0]" (rect 0 109 17 145)(font "Intel Clear" )(vertical))
 	(pt 8 0)
 	(drawing
 		(line (pt 12 84)(pt 12 59))
@@ -282,64 +299,6 @@ https://fpgasoftware.intel.com/eula.
 	)
 )
 (symbol
-	(rect 864 656 976 840)
-	(text "ShiftDecoder" (rect 0 115 12 179)(font "Arial" )(vertical))
-	(text "inst" (rect 96 159 108 176)(font "Arial" )(vertical))
-	(port
-		(pt 32 184)
-		(input)
-		(text "Shift_Left" (rect 0 0 49 12)(font "Arial" ))
-		(text "Shift_Left" (rect 27 114 39 163)(font "Arial" )(vertical))
-		(line (pt 32 184)(pt 32 168))
-	)
-	(port
-		(pt 48 184)
-		(input)
-		(text "Shift_Right" (rect 0 0 55 12)(font "Arial" ))
-		(text "Shift_Right" (rect 43 108 55 163)(font "Arial" )(vertical))
-		(line (pt 48 184)(pt 48 168))
-	)
-	(port
-		(pt 64 184)
-		(input)
-		(text "BFE" (rect 0 0 21 12)(font "Arial" ))
-		(text "BFE" (rect 59 142 71 163)(font "Arial" )(vertical))
-		(line (pt 64 184)(pt 64 168))
-	)
-	(port
-		(pt 80 184)
-		(input)
-		(text "INSTR[11..4]" (rect 0 0 64 12)(font "Arial" ))
-		(text "INSTR[11..4]" (rect 75 99 87 163)(font "Arial" )(vertical))
-		(line (pt 80 184)(pt 80 168)(line_width 3))
-	)
-	(port
-		(pt 32 0)
-		(output)
-		(text "X[3..0]" (rect 0 0 31 12)(font "Arial" ))
-		(text "X[3..0]" (rect 27 16 39 47)(font "Arial" )(vertical))
-		(line (pt 32 0)(pt 32 16)(line_width 3))
-	)
-	(port
-		(pt 48 0)
-		(output)
-		(text "Y[3..0]" (rect 0 0 34 12)(font "Arial" ))
-		(text "Y[3..0]" (rect 43 15 55 49)(font "Arial" )(vertical))
-		(line (pt 48 0)(pt 48 16)(line_width 3))
-	)
-	(port
-		(pt 64 0)
-		(output)
-		(text "Z[3..0]" (rect 0 0 33 12)(font "Arial" ))
-		(text "Z[3..0]" (rect 59 15 71 48)(font "Arial" )(vertical))
-		(line (pt 64 0)(pt 64 16)(line_width 3))
-	)
-	(drawing
-		(rectangle (rect 16 16 96 168))
-	)
-	(rotate90)
-)
-(symbol
 	(rect 1240 584 1320 664)
 	(text "TWOINPUTMUX" (rect 2 0 112 16)(font "Arial" (font_size 10)))
 	(text "inst8" (rect 8 64 30 81)(font "Intel Clear" ))
@@ -385,6 +344,71 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 0)(pt 0 0))
 		(line (pt 0 0)(pt 0 0))
 	)
+)
+(symbol
+	(rect 864 656 1008 832)
+	(text "ShiftDecoder2" (rect 0 101 12 171)(font "Arial" )(vertical))
+	(text "inst" (rect 128 151 140 168)(font "Arial" )(vertical))
+	(port
+		(pt 32 176)
+		(input)
+		(text "Shift_Left" (rect 0 0 49 12)(font "Arial" ))
+		(text "Shift_Left" (rect 27 106 39 155)(font "Arial" )(vertical))
+		(line (pt 32 176)(pt 32 160))
+	)
+	(port
+		(pt 48 176)
+		(input)
+		(text "Shift_Right" (rect 0 0 55 12)(font "Arial" ))
+		(text "Shift_Right" (rect 43 100 55 155)(font "Arial" )(vertical))
+		(line (pt 48 176)(pt 48 160))
+	)
+	(port
+		(pt 64 176)
+		(input)
+		(text "BFE" (rect 0 0 21 12)(font "Arial" ))
+		(text "BFE" (rect 59 134 71 155)(font "Arial" )(vertical))
+		(line (pt 64 176)(pt 64 160))
+	)
+	(port
+		(pt 80 176)
+		(input)
+		(text "SL[3..0]" (rect 0 0 38 12)(font "Arial" ))
+		(text "SL[3..0]" (rect 75 117 87 155)(font "Arial" )(vertical))
+		(line (pt 80 176)(pt 80 160)(line_width 3))
+	)
+	(port
+		(pt 96 176)
+		(input)
+		(text "SR[3..0]" (rect 0 0 41 12)(font "Arial" ))
+		(text "SR[3..0]" (rect 91 114 103 155)(font "Arial" )(vertical))
+		(line (pt 96 176)(pt 96 160)(line_width 3))
+	)
+	(port
+		(pt 32 0)
+		(output)
+		(text "X[3..0]" (rect 0 0 31 12)(font "Arial" ))
+		(text "X[3..0]" (rect 27 21 39 47)(font "Arial" )(vertical))
+		(line (pt 32 0)(pt 32 16)(line_width 3))
+	)
+	(port
+		(pt 48 0)
+		(output)
+		(text "Y[3..0]" (rect 0 0 34 12)(font "Arial" ))
+		(text "Y[3..0]" (rect 43 21 55 49)(font "Arial" )(vertical))
+		(line (pt 48 0)(pt 48 16)(line_width 3))
+	)
+	(port
+		(pt 64 0)
+		(output)
+		(text "Z[3..0]" (rect 0 0 33 12)(font "Arial" ))
+		(text "Z[3..0]" (rect 59 21 71 48)(font "Arial" )(vertical))
+		(line (pt 64 0)(pt 64 16)(line_width 3))
+	)
+	(drawing
+		(rectangle (rect 16 16 128 160))
+	)
+	(rotate90)
 )
 (connector
 	(pt 944 520)
@@ -468,11 +492,6 @@ https://fpgasoftware.intel.com/eula.
 	(bus)
 )
 (connector
-	(pt 912 656)
-	(pt 912 536)
-	(bus)
-)
-(connector
 	(pt 912 536)
 	(pt 944 536)
 	(bus)
@@ -480,11 +499,6 @@ https://fpgasoftware.intel.com/eula.
 (connector
 	(pt 1168 536)
 	(pt 1200 536)
-	(bus)
-)
-(connector
-	(pt 928 656)
-	(pt 928 616)
 	(bus)
 )
 (connector
@@ -511,24 +525,6 @@ https://fpgasoftware.intel.com/eula.
 	(pt 896 656)
 	(pt 896 616)
 	(bus)
-)
-(connector
-	(pt 944 888)
-	(pt 944 840)
-	(bus)
-)
-(connector
-	(pt 928 888)
-	(pt 928 840)
-)
-(connector
-	(pt 912 888)
-	(pt 912 840)
-)
-(connector
-	(text "Shift_Left" (rect 872 841 889 887)(font "Intel Clear" )(vertical))
-	(pt 896 888)
-	(pt 896 840)
 )
 (connector
 	(pt 1320 632)
@@ -570,6 +566,39 @@ https://fpgasoftware.intel.com/eula.
 	(text "Shift_Left" (rect 1256 665 1273 711)(font "Intel Clear" )(vertical))
 	(pt 1280 664)
 	(pt 1280 704)
+)
+(connector
+	(text "Shift_Left" (rect 871 832 888 878)(font "Intel Clear" )(vertical))
+	(pt 896 832)
+	(pt 896 880)
+)
+(connector
+	(pt 912 832)
+	(pt 912 880)
+)
+(connector
+	(pt 928 832)
+	(pt 928 880)
+)
+(connector
+	(pt 944 832)
+	(pt 944 880)
+	(bus)
+)
+(connector
+	(pt 960 832)
+	(pt 960 880)
+	(bus)
+)
+(connector
+	(pt 912 656)
+	(pt 912 536)
+	(bus)
+)
+(connector
+	(pt 928 656)
+	(pt 928 616)
+	(bus)
 )
 (junction (pt 632 456))
 (junction (pt 920 456))

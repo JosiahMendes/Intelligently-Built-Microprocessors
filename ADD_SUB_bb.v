@@ -4,7 +4,7 @@
 // MODULE: LPM_ADD_SUB 
 
 // ============================================================
-// File Name: ADD.v
+// File Name: ADD_SUB.v
 // Megafunction Name(s):
 // 			LPM_ADD_SUB
 //
@@ -32,12 +32,16 @@
 //refer to the applicable agreement for further details, at
 //https://fpgasoftware.intel.com/eula.
 
-module ADD (
+module ADD_SUB (
+	add_sub,
+	cin,
 	dataa,
 	datab,
 	cout,
 	result);
 
+	input	  add_sub;
+	input	  cin;
 	input	[15:0]  dataa;
 	input	[15:0]  datab;
 	output	  cout;
@@ -48,11 +52,11 @@ endmodule
 // ============================================================
 // CNX file retrieval info
 // ============================================================
-// Retrieval info: PRIVATE: CarryIn NUMERIC "0"
+// Retrieval info: PRIVATE: CarryIn NUMERIC "1"
 // Retrieval info: PRIVATE: CarryOut NUMERIC "1"
 // Retrieval info: PRIVATE: ConstantA NUMERIC "0"
 // Retrieval info: PRIVATE: ConstantB NUMERIC "0"
-// Retrieval info: PRIVATE: Function NUMERIC "0"
+// Retrieval info: PRIVATE: Function NUMERIC "2"
 // Retrieval info: PRIVATE: INTENDED_DEVICE_FAMILY STRING "Cyclone V"
 // Retrieval info: PRIVATE: LPM_PIPELINE NUMERIC "0"
 // Retrieval info: PRIVATE: Latency NUMERIC "0"
@@ -69,23 +73,27 @@ endmodule
 // Retrieval info: PRIVATE: nBit NUMERIC "16"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
 // Retrieval info: LIBRARY: lpm lpm.lpm_components.all
-// Retrieval info: CONSTANT: LPM_DIRECTION STRING "ADD"
-// Retrieval info: CONSTANT: LPM_HINT STRING "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=NO"
+// Retrieval info: CONSTANT: LPM_DIRECTION STRING "UNUSED"
+// Retrieval info: CONSTANT: LPM_HINT STRING "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=YES"
 // Retrieval info: CONSTANT: LPM_REPRESENTATION STRING "UNSIGNED"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_ADD_SUB"
 // Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
+// Retrieval info: USED_PORT: add_sub 0 0 0 0 INPUT NODEFVAL "add_sub"
+// Retrieval info: USED_PORT: cin 0 0 0 0 INPUT NODEFVAL "cin"
 // Retrieval info: USED_PORT: cout 0 0 0 0 OUTPUT NODEFVAL "cout"
 // Retrieval info: USED_PORT: dataa 0 0 16 0 INPUT NODEFVAL "dataa[15..0]"
 // Retrieval info: USED_PORT: datab 0 0 16 0 INPUT NODEFVAL "datab[15..0]"
 // Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL "result[15..0]"
+// Retrieval info: CONNECT: @add_sub 0 0 0 0 add_sub 0 0 0 0
+// Retrieval info: CONNECT: @cin 0 0 0 0 cin 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 16 0 dataa 0 0 16 0
 // Retrieval info: CONNECT: @datab 0 0 16 0 datab 0 0 16 0
 // Retrieval info: CONNECT: cout 0 0 0 0 @cout 0 0 0 0
 // Retrieval info: CONNECT: result 0 0 16 0 @result 0 0 16 0
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD.v TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD.inc FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD.cmp FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD.bsf TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB.inc FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB.cmp FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB.bsf TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB_inst.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL ADD_SUB_bb.v TRUE
 // Retrieval info: LIB_FILE: lpm
