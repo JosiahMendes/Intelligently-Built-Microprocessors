@@ -20,6 +20,7 @@ private:
     map<int,pair<string,string>> m_instructions;
     map<string,string> memory; // location and data written as string
     vector<string> stack; // stack with 16 bit data stored
+    string ir; // current instruction (in hex)
 public:
     CPU() {
         stop = false;
@@ -29,6 +30,7 @@ public:
         reg3 = "0000000000000000";
         pc = 0;
         m_carry = 0;
+        ir = "0000";
     }
 
     // read instructions and store them in m_instructions
@@ -156,6 +158,7 @@ public:
     }
 
     void show_content() {
+        cout << "PC: " << pc << endl;
         cout << "reg0: " << reg0 << endl;
         cout << "reg1: " << reg1 << endl;
         cout << "reg2: " << reg2 << endl;
@@ -169,8 +172,8 @@ public:
                 cout << stack[i] << endl;
             }
         }
-        cout << "PC: " << pc << endl;
         cout << "Carry: " << m_carry << endl;
+        cout << "IR: " << ir << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
         }
@@ -239,6 +242,7 @@ public:
                 m_carry = 0;
             }
         }
+        ir = binary_to_hex("00001"+immediate);
         pc++;
     }
 
@@ -266,6 +270,7 @@ public:
         } else {
             m_carry = 0;
         }
+        ir = binary_to_hex("00010"+immediate);
         pc++;
     }
 
@@ -329,6 +334,7 @@ public:
                 m_carry = 0;
             }
         }
+        ir = binary_to_hex("00100"+immediate);
         pc++;
     }
 
@@ -356,6 +362,7 @@ public:
         } else {
             m_carry = 0;
         }
+        ir = binary_to_hex("00101"+immediate);
         pc++;
     }
 
@@ -419,6 +426,7 @@ public:
                 m_carry = 0;
             }
         }
+        ir = binary_to_hex("00111"+immediate);
         pc++;
     }
 
@@ -446,6 +454,7 @@ public:
         } else {
             m_carry = 0;
         }
+        ir = binary_to_hex("01000"+immediate);
         pc++;
     }
 
@@ -518,6 +527,7 @@ public:
         } else if(which_register == "11") {
             reg3 = result;
         }
+        ir = binary_to_hex("01011"+immediate);
         pc++;
     }
 
@@ -554,6 +564,7 @@ public:
         } else if(which_register == "11") {
             reg3 = result;
         }
+        ir = binary_to_hex("0110"+immediate);
         pc++;
     }
 
@@ -583,6 +594,7 @@ public:
         } else {
             m_carry = 0;
         }
+        ir = binary_to_hex("00011"+immediate);
         pc++;
     }
 
@@ -612,6 +624,7 @@ public:
         } else {
             m_carry = 0;
         }
+        ir = binary_to_hex("00110"+immediate);
         pc++;
     }
 
@@ -633,6 +646,7 @@ public:
         } else if(which_register == "11") {
             reg3 = immediate_value_16;
         }
+        ir = binary_to_hex("100"+immediate);
         pc++;
     }
 
@@ -699,6 +713,7 @@ public:
         } else if(which_register == "11") {
             reg3 = loaded_value;
         }
+        ir = binary_to_hex("11000"+immediate);
         pc++;
     }
 
@@ -729,6 +744,7 @@ public:
         } else { // not found
             memory.insert(pair<string,string>(location,store_value));
         }
+        ir = binary_to_hex("101"+immediate);
         pc++;
     }
 
@@ -772,6 +788,8 @@ public:
                 memory.insert(pair<string,string>(sum.first,register_Rn));
             }
         }
+        ir = binary_to_hex("11001"+immediate);
+        pc++;
     }
 
     // adding to the stack
@@ -790,6 +808,7 @@ public:
         }
         assert(pushed_value.length() == 16);
         stack.push_back(pushed_value);
+        ir = binary_to_hex("11010"+immediate);
         pc++;
     }
 
@@ -814,6 +833,7 @@ public:
             reg3 = popped_value;
         }
         stack.resize(stack.size()-1);
+        ir = binary_to_hex("11011"+immediate);
         pc++;
     }
 
@@ -874,6 +894,7 @@ public:
                 m_carry = 0;
             }
         }
+        ir = binary_to_hex("01001"+immediate);
         pc++;
     }
 
@@ -934,6 +955,7 @@ public:
                 m_carry = 0;
             }
         }
+        ir = binary_to_hex("01010"+immediate);
         pc++;
     }
 
@@ -994,18 +1016,21 @@ public:
         } else {
             pc++;
         }
+        ir = binary_to_hex("01110"+immediate);
     }
 
     // PC = N
     void JMP(string immediate) {
         assert(immediate.length() == 11);
         pc = stoi(immediate,nullptr,2);
+        ir = binary_to_hex("01111"+immediate);
     }
 
     // stops the program from executing further instructions
     void STP(string immediate) {
         stop = true;
         cout << "PC: " << pc << " Program stopped" << endl;
+        ir = binary_to_hex("00000"+immediate);
     }
 
     // logical shift left by n, used for immediate offset
@@ -1238,6 +1263,47 @@ public:
         }
         assert(binary_value.length() == 16);
         return binary_value;
+    }
+
+    // turn 16-bit binary to hexadecimal
+    string binary_to_hex(string binary_number) {
+        assert(binary_number.length() == 16);
+        string result = "";
+        string four_bit_number;
+        for(int i = 0; i <= 12; i = i + 4) {
+            four_bit_number = "";
+            for(int j = 0; j < 4; j++) {
+                four_bit_number = four_bit_number + binary_number[i+j];
+            }
+            assert(four_bit_number.length() == 4);
+            int n = stoi(four_bit_number,nullptr,2);
+            if(n < 10) {
+                result = result + to_string(n);
+            } else {
+                switch(n) {
+                    case 10:
+                        result = result + "A";
+                        break;
+                    case 11:
+                        result = result + "B";
+                        break;
+                    case 12:
+                        result = result + "C";
+                        break;
+                    case 13:
+                        result = result + "D";
+                        break;
+                    case 14:
+                        result = result + "E";
+                        break;
+                    case 15:
+                        result = result + "F";
+                        break;
+                };
+            }
+        }
+        assert(result.length() == 4);
+        return result;
     }
 
     // turn a string to uppercase
