@@ -1,16 +1,30 @@
 /*<simulation_settings>
+<<<<<<< HEAD
 <ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CPU_project -c CPU_project --vector_source="C:/Users/Edvard/Documents/GitHub/CPU-Project/Waveform7.vwf" --testbench_file="C:/Users/Edvard/Documents/GitHub/CPU-Project/simulation/qsim/Waveform7.vwf.vt"</ftestbench_cmd>
 <ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CPU_project -c CPU_project --vector_source="C:/Users/Edvard/Documents/GitHub/CPU-Project/Waveform7.vwf" --testbench_file="C:/Users/Edvard/Documents/GitHub/CPU-Project/simulation/qsim/Waveform7.vwf.vt"</ttestbench_cmd>
 <fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/Edvard/Documents/GitHub/CPU-Project/simulation/qsim/" CPU_project -c CPU_project</fnetlist_cmd>
 <tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="C:/Users/Edvard/Documents/GitHub/CPU-Project/simulation/qsim/" CPU_project -c CPU_project</tnetlist_cmd>
+=======
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CPU_project -c CPU_project --vector_source="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/Waveform7.vwf" --testbench_file="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/simulation/qsim/Waveform7.vwf.vt"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=verilog --write_settings_files=off CPU_project -c CPU_project --vector_source="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/Waveform7.vwf" --testbench_file="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/simulation/qsim/Waveform7.vwf.vt"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=verilog --output_directory="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/simulation/qsim/" CPU_project -c CPU_project</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=verilog --output_directory="C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/simulation/qsim/" CPU_project -c CPU_project</tnetlist_cmd>
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 <modelsim_script>onerror {exit -code 1}
 vlib work
 vlog -work work CPU_project.vo
 vlog -work work Waveform7.vwf.vt
+<<<<<<< HEAD
 vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.BBOShell_vlg_vec_tst
 vcd file -direction CPU_project.msim.vcd
 vcd add -internal BBOShell_vlg_vec_tst/*
 vcd add -internal BBOShell_vlg_vec_tst/i1/*
+=======
+vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.State_Machine_vlg_vec_tst
+vcd file -direction CPU_project.msim.vcd
+vcd add -internal State_Machine_vlg_vec_tst/*
+vcd add -internal State_Machine_vlg_vec_tst/i1/*
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -25,10 +39,17 @@ quit -f
 vlib work
 vlog -work work CPU_project.vo
 vlog -work work Waveform7.vwf.vt
+<<<<<<< HEAD
 vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.BBOShell_vlg_vec_tst
 vcd file -direction CPU_project.msim.vcd
 vcd add -internal BBOShell_vlg_vec_tst/*
 vcd add -internal BBOShell_vlg_vec_tst/i1/*
+=======
+vsim -novopt -c -t 1ps -L cyclonev_ver -L altera_ver -L altera_mf_ver -L 220model_ver -L sgate_ver -L altera_lnsim_ver work.State_Machine_vlg_vec_tst
+vcd file -direction CPU_project.msim.vcd
+vcd add -internal State_Machine_vlg_vec_tst/*
+vcd add -internal State_Machine_vlg_vec_tst/i1/*
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 proc simTimestamp {} {
     echo "Simulation time: $::now ps"
     if { [string equal running [runStatus]] } {
@@ -76,6 +97,7 @@ HEADER
 	GRID_DUTY_CYCLE = 50;
 }
 
+<<<<<<< HEAD
 SIGNAL("A")
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
@@ -207,41 +229,66 @@ SIGNAL("A[4]")
 }
 
 SIGNAL("A[3]")
+=======
+SIGNAL("CLK")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = INPUT;
+<<<<<<< HEAD
 	PARENT = "A";
 }
 
 SIGNAL("A[2]")
+=======
+	PARENT = "";
+}
+
+SIGNAL("E1")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = INPUT;
+<<<<<<< HEAD
 	PARENT = "A";
 }
 
 SIGNAL("A[1]")
+=======
+	PARENT = "";
+}
+
+SIGNAL("E2")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
 	DIRECTION = INPUT;
+<<<<<<< HEAD
 	PARENT = "A";
 }
 
 SIGNAL("A[0]")
+=======
+	PARENT = "";
+}
+
+SIGNAL("EXEC1")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
+<<<<<<< HEAD
 	DIRECTION = INPUT;
 	PARENT = "A";
 }
@@ -257,31 +304,55 @@ SIGNAL("B")
 }
 
 SIGNAL("B[15]")
+=======
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("EXEC2")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
+<<<<<<< HEAD
 	DIRECTION = INPUT;
 	PARENT = "B";
 }
 
 SIGNAL("B[14]")
+=======
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("EXEC3")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
+<<<<<<< HEAD
 	DIRECTION = INPUT;
 	PARENT = "B";
 }
 
 SIGNAL("B[13]")
+=======
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("FETCH")
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 {
 	VALUE_TYPE = NINE_LEVEL_BIT;
 	SIGNAL_TYPE = SINGLE_BIT;
 	WIDTH = 1;
 	LSB_INDEX = -1;
+<<<<<<< HEAD
 	DIRECTION = INPUT;
 	PARENT = "B";
 }
@@ -3208,6 +3279,145 @@ DISPLAY_LINE
 	TREE_INDEX = 54;
 	TREE_LEVEL = 1;
 	PARENT = 38;
+=======
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+TRANSITION_LIST("CLK")
+{
+	NODE
+	{
+		REPEAT = 1;
+		NODE
+		{
+			REPEAT = 100;
+			LEVEL 0 FOR 5.0;
+			LEVEL 1 FOR 5.0;
+		}
+	}
+}
+
+TRANSITION_LIST("E1")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 10.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 980.0;
+	}
+}
+
+TRANSITION_LIST("E2")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 20.0;
+		LEVEL 1 FOR 10.0;
+		LEVEL 0 FOR 970.0;
+	}
+}
+
+TRANSITION_LIST("EXEC1")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("EXEC2")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("EXEC3")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+TRANSITION_LIST("FETCH")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 1000.0;
+	}
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "CLK";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 0;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "E1";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 1;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "E2";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 2;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "FETCH";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "EXEC1";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "EXEC2";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "EXEC3";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 0;
+>>>>>>> e868fa3c8b923d1812cec984b9ecccc79f192e8e
 }
 
 TIME_BAR
