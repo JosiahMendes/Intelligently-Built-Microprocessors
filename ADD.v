@@ -38,13 +38,11 @@
 `timescale 1 ps / 1 ps
 // synopsys translate_on
 module ADD (
-	cin,
 	dataa,
 	datab,
 	cout,
 	result);
 
-	input	  cin;
 	input	[15:0]  dataa;
 	input	[15:0]  datab;
 	output	  cout;
@@ -56,7 +54,6 @@ module ADD (
 	wire [15:0] result = sub_wire1[15:0];
 
 	lpm_add_sub	LPM_ADD_SUB_component (
-				.cin (cin),
 				.dataa (dataa),
 				.datab (datab),
 				.cout (sub_wire0),
@@ -65,6 +62,7 @@ module ADD (
 				,
 				.aclr (),
 				.add_sub (),
+				.cin (),
 				.clken (),
 				.clock (),
 				.overflow ()
@@ -72,7 +70,7 @@ module ADD (
 				);
 	defparam
 		LPM_ADD_SUB_component.lpm_direction = "ADD",
-		LPM_ADD_SUB_component.lpm_hint = "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=YES",
+		LPM_ADD_SUB_component.lpm_hint = "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=NO",
 		LPM_ADD_SUB_component.lpm_representation = "UNSIGNED",
 		LPM_ADD_SUB_component.lpm_type = "LPM_ADD_SUB",
 		LPM_ADD_SUB_component.lpm_width = 16;
@@ -83,7 +81,7 @@ endmodule
 // ============================================================
 // CNX file retrieval info
 // ============================================================
-// Retrieval info: PRIVATE: CarryIn NUMERIC "1"
+// Retrieval info: PRIVATE: CarryIn NUMERIC "0"
 // Retrieval info: PRIVATE: CarryOut NUMERIC "1"
 // Retrieval info: PRIVATE: ConstantA NUMERIC "0"
 // Retrieval info: PRIVATE: ConstantB NUMERIC "0"
@@ -105,16 +103,14 @@ endmodule
 // Retrieval info: PRIVATE: new_diagram STRING "1"
 // Retrieval info: LIBRARY: lpm lpm.lpm_components.all
 // Retrieval info: CONSTANT: LPM_DIRECTION STRING "ADD"
-// Retrieval info: CONSTANT: LPM_HINT STRING "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=YES"
+// Retrieval info: CONSTANT: LPM_HINT STRING "ONE_INPUT_IS_CONSTANT=NO,CIN_USED=NO"
 // Retrieval info: CONSTANT: LPM_REPRESENTATION STRING "UNSIGNED"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_ADD_SUB"
 // Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
-// Retrieval info: USED_PORT: cin 0 0 0 0 INPUT NODEFVAL "cin"
 // Retrieval info: USED_PORT: cout 0 0 0 0 OUTPUT NODEFVAL "cout"
 // Retrieval info: USED_PORT: dataa 0 0 16 0 INPUT NODEFVAL "dataa[15..0]"
 // Retrieval info: USED_PORT: datab 0 0 16 0 INPUT NODEFVAL "datab[15..0]"
 // Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL "result[15..0]"
-// Retrieval info: CONNECT: @cin 0 0 0 0 cin 0 0 0 0
 // Retrieval info: CONNECT: @dataa 0 0 16 0 dataa 0 0 16 0
 // Retrieval info: CONNECT: @datab 0 0 16 0 datab 0 0 16 0
 // Retrieval info: CONNECT: cout 0 0 0 0 @cout 0 0 0 0
