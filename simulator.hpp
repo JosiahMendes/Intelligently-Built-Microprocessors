@@ -21,6 +21,7 @@ private:
     map<string,string> memory; // location and data written as string
     vector<string> stack; // stack with 16 bit data stored
     string ir; // current instruction (in hex)
+    string ir_explained; // ir in words e.g. ADR 0000
 public:
     CPU() {
         stop = false;
@@ -30,7 +31,9 @@ public:
         reg3 = "0000000000000000";
         pc = 0;
         m_carry = 0;
+        show_content();
         ir = "0000";
+        ir_explained = "";
     }
 
     // read instructions and store them in m_instructions
@@ -59,6 +62,7 @@ public:
                 instruction == "SBI" ||
                 instruction == "LDI" ||
                 instruction == "LDR" ||
+                instruction == "LDA" ||
                 instruction == "STA" ||
                 instruction == "STI" ||
                 instruction == "PSH" ||
@@ -115,6 +119,8 @@ public:
                 LDI(current_immediate);
             } else if(current_instruction == "LDR") {
                 LDR(current_immediate);
+            } else if(current_instruction == "LDA") {
+                LDA(current_immediate);
             } else if(current_instruction == "STA") {
                 STA(current_immediate);
             } else if(current_instruction == "STI") {
@@ -159,23 +165,25 @@ public:
 
     void show_content() {
         cout << "PC: " << pc << endl;
-        cout << "reg0: " << reg0 << endl;
-        cout << "reg1: " << reg1 << endl;
-        cout << "reg2: " << reg2 << endl;
-        cout << "reg3: " << reg3 << endl;
-        cout << "stack: ";
+        cout << "--REGISTERS--" << endl;
+        cout << "R0: " << reg0 << " (0x" << binary_to_hex(reg0) << ")" << endl;
+        cout << "R1: " << reg1 << " (0x" << binary_to_hex(reg1) << ")" << endl;
+        cout << "R2: " << reg2 << " (0x" << binary_to_hex(reg2) << ")" << endl;
+        cout << "R3: " << reg3 << " (0x" << binary_to_hex(reg3) << ")" << endl;
+        cout << "Stack: ";
         if(stack.empty()) {
             cout << "empty" << endl;
         } else {
             cout << stack.size() << endl;
             for(int i = stack.size()-1; i >= 0; i--) {
-                cout << stack[i] << endl;
+                cout << stack[i] << " (0x" << binary_to_hex(stack[i]) << ")" << endl;
             }
         }
         cout << "Carry: " << m_carry << endl;
-        cout << "IR: " << ir << endl;
+        cout << "IR: " << ir << " // " << ir_explained << endl;
+        cout << "--MEMORY--" << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
-            cout << "Location: " << it->first << " " << "Data: " << it->second << endl;
+            cout << "Location: " << it->first << " (0x" << binary_to_hex(it->first) << ")" << " " << "Data: " << it->second << " (0x" << binary_to_hex(it->second) << ")" << endl;
         }
         cout << "Uninitialized memory is zeroed" << endl;
         cout << "\n\n";
@@ -243,6 +251,7 @@ public:
             }
         }
         ir = binary_to_hex("00001"+immediate);
+        ir_explained = "ADR " + immediate;
         pc++;
     }
 
@@ -271,6 +280,7 @@ public:
             m_carry = 0;
         }
         ir = binary_to_hex("00010"+immediate);
+        ir_explained = "ADM " + immediate;
         pc++;
     }
 
@@ -335,6 +345,7 @@ public:
             }
         }
         ir = binary_to_hex("00100"+immediate);
+        ir_explained = "SBR " + immediate;
         pc++;
     }
 
@@ -363,6 +374,7 @@ public:
             m_carry = 0;
         }
         ir = binary_to_hex("00101"+immediate);
+        ir_explained = "SBM " + immediate;
         pc++;
     }
 
@@ -427,6 +439,7 @@ public:
             }
         }
         ir = binary_to_hex("00111"+immediate);
+        ir_explained = "MLR " + immediate;
         pc++;
     }
 
@@ -455,6 +468,7 @@ public:
             m_carry = 0;
         }
         ir = binary_to_hex("01000"+immediate);
+        ir_explained = "MLM " + immediate;
         pc++;
     }
 
@@ -528,6 +542,7 @@ public:
             reg3 = result;
         }
         ir = binary_to_hex("01011"+immediate);
+        ir_explained = "BBO " + immediate;
         pc++;
     }
 
@@ -565,6 +580,7 @@ public:
             reg3 = result;
         }
         ir = binary_to_hex("0110"+immediate);
+        ir_explained = "BFE " + immediate;
         pc++;
     }
 
@@ -595,6 +611,7 @@ public:
             m_carry = 0;
         }
         ir = binary_to_hex("00011"+immediate);
+        ir_explained = "ADI " + immediate;
         pc++;
     }
 
@@ -625,6 +642,7 @@ public:
             m_carry = 0;
         }
         ir = binary_to_hex("00110"+immediate);
+        ir_explained = "SBI " + immediate;
         pc++;
     }
 
@@ -647,10 +665,11 @@ public:
             reg3 = immediate_value_16;
         }
         ir = binary_to_hex("100"+immediate);
+        ir_explained = "LDI " + immediate;
         pc++;
     }
 
-    // Rn := Mem[N]
+    // Rn := Mem[Ra+N] or Mem[Ra+Rb<<s]
     void LDR(string immediate) {
         assert(immediate.length() == 13);
         string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
@@ -714,6 +733,39 @@ public:
             reg3 = loaded_value;
         }
         ir = binary_to_hex("11000"+immediate);
+        ir_explained = "LDR " + immediate;
+        pc++;
+    }
+
+    // Rn := Mem[N]
+    void LDA(string immediate) {
+        assert(immediate.length() == 13);
+        string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
+        assert(which_register.length() == 2);
+        string data;
+        string location = "00000";
+        for(int i = 12-10; i <= 12-0; i++) {
+            location = location + immediate[i];
+        }
+        assert(location.length() == 16);
+        map<string,string>::iterator it = memory.find(location);
+        if(it != memory.end()) { // found
+            assert(it->second.length() == 16);
+            data = it->second;
+        } else { // not found
+            data = "0000000000000000";
+        }
+        if(which_register == "00") {
+            reg0 = data;
+        } else if(which_register == "01") {
+            reg1 = data;
+        } else if(which_register == "10") {
+            reg2 = data;
+        } else if(which_register == "11") {
+            reg3 = data;
+        }
+        ir = binary_to_hex("111"+immediate);
+        ir_explained = "LDA " + immediate;
         pc++;
     }
 
@@ -745,6 +797,7 @@ public:
             memory.insert(pair<string,string>(location,store_value));
         }
         ir = binary_to_hex("101"+immediate);
+        ir_explained = "STA " + immediate;
         pc++;
     }
 
@@ -789,6 +842,7 @@ public:
             }
         }
         ir = binary_to_hex("11001"+immediate);
+        ir_explained = "STI " + immediate;
         pc++;
     }
 
@@ -809,6 +863,7 @@ public:
         assert(pushed_value.length() == 16);
         stack.push_back(pushed_value);
         ir = binary_to_hex("11010"+immediate);
+        ir_explained = "PSH " + immediate;
         pc++;
     }
 
@@ -834,6 +889,7 @@ public:
         }
         stack.resize(stack.size()-1);
         ir = binary_to_hex("11011"+immediate);
+        ir_explained = "POP " + immediate;
         pc++;
     }
 
@@ -895,6 +951,7 @@ public:
             }
         }
         ir = binary_to_hex("01001"+immediate);
+        ir_explained = "XSL " + immediate;
         pc++;
     }
 
@@ -956,6 +1013,7 @@ public:
             }
         }
         ir = binary_to_hex("01010"+immediate);
+        ir_explained = "XSR " + immediate;
         pc++;
     }
 
@@ -1017,6 +1075,7 @@ public:
             pc++;
         }
         ir = binary_to_hex("01110"+immediate);
+        ir_explained = "JMR " + immediate;
     }
 
     // PC = N
@@ -1024,13 +1083,15 @@ public:
         assert(immediate.length() == 11);
         pc = stoi(immediate,nullptr,2);
         ir = binary_to_hex("01111"+immediate);
+        ir_explained = "JMP " + immediate;
     }
 
     // stops the program from executing further instructions
     void STP(string immediate) {
         stop = true;
-        cout << "PC: " << pc << " Program stopped" << endl;
+        cout << "Stopping on 'STP' instruction at " << pc << endl;
         ir = binary_to_hex("00000"+immediate);
+        ir_explained = "STP";
     }
 
     // logical shift left by n, used for immediate offset
