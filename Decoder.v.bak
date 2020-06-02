@@ -1,8 +1,5 @@
 module Decoder ()
 
-input [4..0] ir;
-
-
 
 assign stp = !ir[4] & !ir[3] & !ir[2] & !ir[1] & !ir[0];
 assign adr = !ir[4] & !ir[3] & !ir[2] & !ir[1] &  ir[0];
