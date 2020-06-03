@@ -21,9 +21,9 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 232 288)
+	(rect 16 16 232 320)
 	(text "ALUDecoder" (rect 5 0 60 12)(font "Arial" ))
-	(text "inst" (rect 8 256 20 268)(font "Arial" ))
+	(text "inst" (rect 8 288 20 300)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -157,7 +157,14 @@ https://fpgasoftware.intel.com/eula.
 		(text "OPSel[1..0]" (rect 152 235 195 247)(font "Arial" ))
 		(line (pt 216 240)(pt 200 240)(line_width 3))
 	)
+	(port
+		(pt 216 256)
+		(output)
+		(text "COUTSel[2..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "COUTSel[2..0]" (rect 136 251 195 263)(font "Arial" ))
+		(line (pt 216 256)(pt 200 256)(line_width 3))
+	)
 	(drawing
-		(rectangle (rect 16 16 200 256)(line_width 1))
+		(rectangle (rect 16 16 200 288)(line_width 1))
 	)
 )
