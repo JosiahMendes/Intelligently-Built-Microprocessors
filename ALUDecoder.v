@@ -1,4 +1,4 @@
-module ALUDecoder(input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, output Shift_in, output Shift_Left, output Shift_Right, output BFE, output [3:0] SL, output [3:0] SR, output [1:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel);
+module ALUDecoder(input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, output Shift_in, output Shift_Left, output Shift_Right, output BFE, output [3:0] SL, output [3:0] SR, output [1:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel);
 
 wire A, B,C, D, E, F, G, H, I, J, K, L, M, N, O, P;
 
@@ -70,7 +70,7 @@ assign BFE = bfe;
 assign SL[3] = (xsl&I)|(bfe&~E)|((adr|sbr|mlr)&Rx[3])|(((ldr|sti)&M));
 assign SL[2] = (xsl&J)|(bfe&~F)|((adr|sbr|mlr)&Rx[2])|(((ldr|sti)&N));
 assign SL[1] = (xsl&K)|(bfe&~G)|((adr|sbr|mlr)&Rx[1])|(((ldr|sti)&O));
-assign SL[0] = (xsl&L)|(bfe&~H)|((adr|sbr|mlr)&Rx[0])|(((ldr|sti)&M));
+assign SL[0] = (xsl&L)|(bfe&~H)|((adr|sbr|mlr)&Rx[0])|(((ldr|sti)&P));
 
 assign SR[3] = (xsr&I)|(bfe&I)|((adr|sbr|mlr)&Rx[3]);
 assign SR[2] = (xsr&J)|(bfe&J)|((adr|sbr|mlr)&Rx[2]);
@@ -89,6 +89,10 @@ assign BBO = bbo;
 
 assign OPSel[1] = bfe|xsl|xsr;
 assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo;
+
+assign COUTSel[2] = (mlr&~I&J)|(sbi|sbm|sbr);
+assign COUTSel[1] = xsl|xsr|(sbr&~I&J);
+assign COUTSel[0] = (adr&~I&J)|mlm|(mlr&~(~I&J))|(sbm|sbi)|(sbr&~(~I&J));
 
 
 endmodule
