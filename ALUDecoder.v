@@ -22,16 +22,15 @@ assign P = INSTR[0];
 
 wire  adr, adm, adi, sbr, sbm, sbi, mlr, bfe, xsl, xsr, bbo, ldr, sti, mlm;
 
-//MLM redundant.
+//MLM redundant,  BFE also redundant
 
 assign adr = ~A & ~B & ~C & ~D &  E; 
-assign adm = ~A & ~B & ~C &  D & ~E;
-assign adi = ~A & ~B & ~C &  D &  E;
-assign sbr = ~A & ~B &  C & ~D & ~E;
-assign sbm = ~A & ~B &  C & ~D &  E;
-assign sbi = ~A & ~B &  C &  D & ~E;    
-assign mlr = ~A & ~B &  C &  D &  E;
-assign bfe = ~A &  B & ~C & ~D; 
+assign adm = ~A & ~B & ~C &  D;
+assign adi = ~A & ~B &  C & ~D & ~E;
+assign sbr = ~A & ~B &  C & ~D &  E;
+assign sbm = ~A & ~B &  C &  D;
+assign sbi = ~A &  B & ~C & ~D & ~E;    
+assign mlr = ~A &  B & ~C & ~D &  E;
 assign xsl = ~A &  B & ~C &  D & ~E; 
 assign xsr = ~A &  B & ~C &  D &  E;
 assign bbo = ~A &  B &  C & ~D & ~E;
