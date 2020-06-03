@@ -5,7 +5,7 @@ module Decoder (
 	
 	input fe, e1, e2, 
 	
-	output  instr_wren, instr_rden, data_wren, data_rden, pc_sload, pc_cnten, r0en, r1en, r2en, r3en, extra1, mux1_sel, mux2_sel 
+	output  instr_wren, instr_rden, data_wren, data_rden, pc_sload, pc_cnten, r0en, r1en, r2en, r3en, extra1, mux1_sel, mux2_sel, mux3_sel 
 	
 	
 	
@@ -78,6 +78,7 @@ assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2)
 
 assign mux1_sel = (ldi&e1);
 assign mux2_sel = (ldr&e1);
+assign mux3_sel = (ldr);
 assign extra1 = (lda)|(ldr);
 
 

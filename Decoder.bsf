@@ -157,6 +157,13 @@ https://fpgasoftware.intel.com/eula.
 		(text "mux2_sel" (rect 141 251 179 263)(font "Arial" ))
 		(line (pt 200 256)(pt 184 256)(line_width 1))
 	)
+	(port
+		(pt 200 272)
+		(output)
+		(text "mux3_sel" (rect 0 0 38 12)(font "Arial" ))
+		(text "mux3_sel" (rect 141 267 179 279)(font "Arial" ))
+		(line (pt 200 272)(pt 184 272)(line_width 1))
+	)
 	(drawing
 		(rectangle (rect 16 16 184 288)(line_width 1))
 	)
