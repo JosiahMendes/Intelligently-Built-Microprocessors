@@ -31,7 +31,6 @@ public:
         reg3 = "0000000000000000";
         pc = 0;
         m_carry = 0;
-        show_content();
         ir = "0000";
         ir_explained = "";
     }
@@ -81,6 +80,201 @@ public:
                 cout << "Error: " << instruction << " is not a valid instruction" << endl;
                 return;
             }
+            order++;
+        }
+    }
+
+    // reading instructions in hexadecimal
+    void read_hex() {
+        string instruction;
+        string instruction_binary;
+        string opcode;
+        string immediate = "";
+        int order = 0;
+        while(1) {
+            cin >> instruction;
+            if(cin.fail()) {
+                break;
+            }
+            assert(instruction.length() == 4);
+            int instruction_in_decimal = stoi(instruction,nullptr,16);
+            instruction_binary = decimal_to_binary(instruction_in_decimal);
+            assert(instruction_binary.length() == 16);
+            if(instruction_binary[0] == '1') {
+                if(instruction_binary[1] == '0') { // LDI or STA
+                    if(instruction_binary[2] == '0') { // LDI
+                        opcode = "LDI";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    } else { // STA
+                        opcode = "STA";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    }
+                } else {
+                    if(instruction_binary[2] == '1') { // LDA
+                        opcode = "LDA";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    } else { // 110xx so LDR or STI or PSH or POP
+                        if(instruction_binary[3] == '0') { // 1100x so LDR or STI
+                            if(instruction_binary[4] == '0') { // 11000 LDR
+                                opcode = "LDR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 11001 STI
+                                opcode = "STI";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        } else { // 1101x so PSH or POP
+                            if(instruction_binary[4] == '0') { // 11010 PSH
+                                opcode = "PSH";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 11011 POP
+                                opcode = "POP";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    }
+                }
+            } else { // 0xxxx
+                if(instruction_binary[1] == '0') { // 00xxx
+                    if(instruction_binary[2] == '0') { // 000xx
+                        if(instruction_binary[3] == '0') { // 0000x
+                            if(instruction_binary[4] == '0') { // 00000 STP
+                                opcode = "STP";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 00001 ADR
+                                opcode = "ADR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        } else { // 0001x
+                            if(instruction_binary[4] == '0') { // 00010 ADM
+                                opcode = "ADM";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 00011
+                                opcode = "ADI";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    } else { // 001xx
+                        if(instruction_binary[3] == '0') { // 0010x
+                            if(instruction_binary[4] == '0') { // 00100 SBR
+                                opcode = "SBR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 00101 SBM
+                                opcode = "SBM";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        } else { // 0011x
+                            if(instruction[4] == '0') { // 00110 SBI
+                                opcode = "SBI";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 00111 MLR
+                                opcode = "MLR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    }
+                } else { // 01xxx
+                    if(instruction_binary[2] == '0') { // 010xx
+                        if(instruction_binary[3] == '0') { // 0100x
+                            if(instruction_binary[4] == '0') { // 01000 MLM
+                                opcode = "MLM";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 01001 XSL
+                                opcode = "XSL";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        } else { // 0101x
+                            if(instruction_binary[4] == '0') { // 01010 XSR
+                                opcode = "XSR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 01011 // BBO
+                                opcode = "BBO";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    } else { // 011xx
+                        if(instruction_binary[3] == '0') { // 0110 BFE
+                            opcode = "BFE";
+                            for(int i = 4; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 12);
+                        } else { // 0111x
+                            if(instruction_binary[4] == '0') { // 01110 JMR
+                                opcode = "JMR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 01111 JMP
+                                opcode = "JMP";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    }
+                }
+            }
+            m_instructions.insert(pair<int,pair<string,string>>(order,make_pair(opcode,immediate)));
+            immediate = "";
             order++;
         }
     }
@@ -144,6 +338,7 @@ public:
 
     // run the instructions stored in m_instructions
     void run() {
+        show_content();
         for(int i = 0; i < m_instructions.size(); i++) {
             execute();
             if(stop) {
@@ -180,7 +375,7 @@ public:
             }
         }
         cout << "Carry: " << m_carry << endl;
-        cout << "IR: " << ir << " // " << ir_explained << endl;
+        cout << "IR: 0x" << ir << " // " << ir_explained << endl;
         cout << "--MEMORY--" << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " (0x" << binary_to_hex(it->first) << ")" << " " << "Data: " << it->second << " (0x" << binary_to_hex(it->second) << ")" << endl;
@@ -887,7 +1082,9 @@ public:
         } else if(which_register == "11") {
             reg3 = popped_value;
         }
-        stack.resize(stack.size()-1);
+        if(!stack.empty()) {
+            stack.resize(stack.size()-1);
+        }
         ir = binary_to_hex("11011"+immediate);
         ir_explained = "POP " + immediate;
         pc++;
