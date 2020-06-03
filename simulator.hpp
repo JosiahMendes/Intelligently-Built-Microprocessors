@@ -52,7 +52,6 @@ public:
                 instruction == "SBR" || 
                 instruction == "SBM" ||
                 instruction == "MLR" ||
-                instruction == "MLM" ||
                 instruction == "BBO" ||
                 instruction == "BFE" ||
                 instruction == "XSL" ||
@@ -64,10 +63,11 @@ public:
                 instruction == "LDA" ||
                 instruction == "STA" ||
                 instruction == "STI" ||
-                instruction == "PSH" ||
-                instruction == "POP" ||
+                instruction == "STK" ||
                 instruction == "JMR" ||
                 instruction == "JMP" ||
+                instruction == "JEQ" ||
+                instruction == "JNQ" ||
                 instruction == "STP") {
                 cin >> immediate;
                 if(stoi(immediate,nullptr,2)<0) { // immediate stored as binary
@@ -100,61 +100,7 @@ public:
             int instruction_in_decimal = stoi(instruction,nullptr,16);
             instruction_binary = decimal_to_binary(instruction_in_decimal);
             assert(instruction_binary.length() == 16);
-            if(instruction_binary[0] == '1') {
-                if(instruction_binary[1] == '0') { // LDI or STA
-                    if(instruction_binary[2] == '0') { // LDI
-                        opcode = "LDI";
-                        for(int i = 3; i < 16; i++) {
-                            immediate = immediate + instruction_binary[i];
-                        }
-                        assert(immediate.length() == 13);
-                    } else { // STA
-                        opcode = "STA";
-                        for(int i = 3; i < 16; i++) {
-                            immediate = immediate + instruction_binary[i];
-                        }
-                        assert(immediate.length() == 13);
-                    }
-                } else {
-                    if(instruction_binary[2] == '1') { // LDA
-                        opcode = "LDA";
-                        for(int i = 3; i < 16; i++) {
-                            immediate = immediate + instruction_binary[i];
-                        }
-                        assert(immediate.length() == 13);
-                    } else { // 110xx so LDR or STI or PSH or POP
-                        if(instruction_binary[3] == '0') { // 1100x so LDR or STI
-                            if(instruction_binary[4] == '0') { // 11000 LDR
-                                opcode = "LDR";
-                                for(int i = 5; i < 16; i++) {
-                                    immediate = immediate + instruction_binary[i];
-                                }
-                                assert(immediate.length() == 11);
-                            } else { // 11001 STI
-                                opcode = "STI";
-                                for(int i = 5; i < 16; i++) {
-                                    immediate = immediate + instruction_binary[i];
-                                }
-                                assert(immediate.length() == 11);
-                            }
-                        } else { // 1101x so PSH or POP
-                            if(instruction_binary[4] == '0') { // 11010 PSH
-                                opcode = "PSH";
-                                for(int i = 5; i < 16; i++) {
-                                    immediate = immediate + instruction_binary[i];
-                                }
-                                assert(immediate.length() == 11);
-                            } else { // 11011 POP
-                                opcode = "POP";
-                                for(int i = 5; i < 16; i++) {
-                                    immediate = immediate + instruction_binary[i];
-                                }
-                                assert(immediate.length() == 11);
-                            }
-                        }
-                    }
-                }
-            } else { // 0xxxx
+            if(instruction_binary[0] == '0') { // 0xxxx
                 if(instruction_binary[1] == '0') { // 00xxx
                     if(instruction_binary[2] == '0') { // 000xx
                         if(instruction_binary[3] == '0') { // 0000x
@@ -178,7 +124,7 @@ public:
                                     immediate = immediate + instruction_binary[i];
                                 }
                                 assert(immediate.length() == 11);
-                            } else { // 00011
+                            } else { // 00011 ADI
                                 opcode = "ADI";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
@@ -186,7 +132,7 @@ public:
                                 assert(immediate.length() == 11);
                             }
                         }
-                    } else { // 001xx
+                    } else { // 001x
                         if(instruction_binary[3] == '0') { // 0010x
                             if(instruction_binary[4] == '0') { // 00100 SBR
                                 opcode = "SBR";
@@ -202,7 +148,7 @@ public:
                                 assert(immediate.length() == 11);
                             }
                         } else { // 0011x
-                            if(instruction[4] == '0') { // 00110 SBI
+                            if(instruction_binary[4] == '0') { // 00110 SBI
                                 opcode = "SBI";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
@@ -219,29 +165,21 @@ public:
                     }
                 } else { // 01xxx
                     if(instruction_binary[2] == '0') { // 010xx
-                        if(instruction_binary[3] == '0') { // 0100x
-                            if(instruction_binary[4] == '0') { // 01000 MLM
-                                opcode = "MLM";
-                                for(int i = 5; i < 16; i++) {
+                        if(instruction_binary[3] == '0') { // 0100 BFE
+                            opcode = "BFE";
+                            for(int i = 4; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
-                                assert(immediate.length() == 11);
-                            } else { // 01001 XSL
+                                assert(immediate.length() == 12);
+                        } else { // 0101x
+                            if(instruction_binary[4] == '0') { // 01010 XSL
                                 opcode = "XSL";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
                                 assert(immediate.length() == 11);
-                            }
-                        } else { // 0101x
-                            if(instruction_binary[4] == '0') { // 01010 XSR
+                            } else { // 01011 XSR
                                 opcode = "XSR";
-                                for(int i = 5; i < 16; i++) {
-                                    immediate = immediate + instruction_binary[i];
-                                }
-                                assert(immediate.length() == 11);
-                            } else { // 01011 // BBO
-                                opcode = "BBO";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
@@ -249,21 +187,83 @@ public:
                             }
                         }
                     } else { // 011xx
-                        if(instruction_binary[3] == '0') { // 0110 BFE
-                            opcode = "BFE";
-                            for(int i = 4; i < 16; i++) {
+                        if(instruction_binary[3] == '0') { // 0110x
+                            if(instruction_binary[4] == '0') { // 01100 BBO
+                                opcode = "BBO";
+                                for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
-                                assert(immediate.length() == 12);
+                                assert(immediate.length() == 11);
+                            } else { // 01101 STK
+                                opcode = "STK";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
                         } else { // 0111x
-                            if(instruction_binary[4] == '0') { // 01110 JMR
+                            if(instruction_binary[4] == '0') { // 01110 LDR
+                                opcode = "LDR";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 01111 STI
+                                opcode = "STI";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        }
+                    }
+                }
+            } else { // 1xxxx
+                if(instruction_binary[1] == '0') { // 10xxx
+                    if(instruction_binary[2] == '0') { // 100 LDI
+                        opcode = "LDI";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    } else { // 101 STA
+                        opcode = "STA";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    }
+                } else { // 11xxx
+                    if(instruction_binary[2] == '0') { // 110 LDA
+                        opcode = "LDA";
+                        for(int i = 3; i < 16; i++) {
+                            immediate = immediate + instruction_binary[i];
+                        }
+                        assert(immediate.length() == 13);
+                    } else { // 111xx
+                        if(instruction_binary[3] == '0') { // 1110x
+                            if(instruction_binary[4] == '0') { // 11100 JMR
                                 opcode = "JMR";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
                                 assert(immediate.length() == 11);
-                            } else { // 01111 JMP
+                            } else { // 11101 JMP
                                 opcode = "JMP";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            }
+                        } else { // 1111x
+                            if(instruction_binary[4] == '0') { // 11110 JEQ
+                                opcode = "JEQ";
+                                for(int i = 5; i < 16; i++) {
+                                    immediate = immediate + instruction_binary[i];
+                                }
+                                assert(immediate.length() == 11);
+                            } else { // 11111 JNQ
+                                opcode = "JNQ";
                                 for(int i = 5; i < 16; i++) {
                                     immediate = immediate + instruction_binary[i];
                                 }
@@ -295,8 +295,6 @@ public:
                 SBM(current_immediate);
             } else if(current_instruction == "MLR") {
                 MLR(current_immediate);
-            } else if(current_instruction == "MLM") {
-                MLM(current_immediate);
             } else if(current_instruction == "BBO") {
                 BBO(current_immediate);
             } else if(current_instruction == "BFE") {
@@ -319,14 +317,16 @@ public:
                 STA(current_immediate);
             } else if(current_instruction == "STI") {
                 STI(current_immediate);
-            } else if(current_instruction == "PSH") {
-                PSH(current_immediate);
-            } else if(current_instruction == "POP") {
-                POP(current_immediate);
+            } else if(current_instruction == "STK") {
+                STK(current_immediate);
             } else if(current_instruction == "JMR") {
                 JMR(current_immediate);
             } else if(current_instruction == "JMP") {
                 JMP(current_immediate);
+            } else if(current_instruction == "JEQ") {
+                JEQ(current_immediate);
+            } else if(current_instruction == "JNQ") {
+                JNQ(current_immediate);
             } else if(current_instruction == "STP") {
                 STP(current_immediate);
             }
@@ -375,7 +375,7 @@ public:
             }
         }
         cout << "Carry: " << m_carry << endl;
-        cout << "IR: 0x" << ir << " // " << ir_explained << endl;
+        cout << "Instruction: 0x" << ir << " // " << ir_explained << endl;
         cout << "--MEMORY--" << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " (0x" << binary_to_hex(it->first) << ")" << " " << "Data: " << it->second << " (0x" << binary_to_hex(it->second) << ")" << endl;
@@ -638,35 +638,6 @@ public:
         pc++;
     }
 
-    // R0 := R0 * Mem[N]
-    void MLM(string immediate) {
-        assert(immediate.length() == 11);
-        string immediate_16 = immediate;
-        for(int i = 0; i < 5; i++) {
-            immediate_16 = "0" + immediate_16;
-        }
-        assert(immediate_16.length() == 16);
-        string register_R0 = reg0;
-        map<string,string>::iterator it = memory.find(immediate_16);
-        string data;
-        if(it != memory.end()) { // found Mem[N]
-            data = it->second;
-        } else {
-            data = "0000000000000000";
-        }
-        assert(data.length() == 16);
-        pair<string,bool> result = multiplication(reg0, data, 0); // cin = 0
-        reg0 = result.first;
-        if(result.second) { // if cout = 1
-            m_carry = 1;
-        } else {
-            m_carry = 0;
-        }
-        ir = binary_to_hex("01000"+immediate);
-        ir_explained = "MLM " + immediate;
-        pc++;
-    }
-
     // Bitwise Boolean Operations, carry NOT written
     void BBO(string immediate) {
         assert(immediate.length() == 11);
@@ -736,7 +707,7 @@ public:
         } else if(which_register == "11") {
             reg3 = result;
         }
-        ir = binary_to_hex("01011"+immediate);
+        ir = binary_to_hex("01100"+immediate);
         ir_explained = "BBO " + immediate;
         pc++;
     }
@@ -774,7 +745,7 @@ public:
         } else if(which_register == "11") {
             reg3 = result;
         }
-        ir = binary_to_hex("0110"+immediate);
+        ir = binary_to_hex("0100"+immediate);
         ir_explained = "BFE " + immediate;
         pc++;
     }
@@ -927,7 +898,7 @@ public:
         } else if(which_register == "11") {
             reg3 = loaded_value;
         }
-        ir = binary_to_hex("11000"+immediate);
+        ir = binary_to_hex("01110"+immediate);
         ir_explained = "LDR " + immediate;
         pc++;
     }
@@ -959,7 +930,7 @@ public:
         } else if(which_register == "11") {
             reg3 = data;
         }
-        ir = binary_to_hex("111"+immediate);
+        ir = binary_to_hex("110"+immediate);
         ir_explained = "LDA " + immediate;
         pc++;
     }
@@ -1036,15 +1007,28 @@ public:
                 memory.insert(pair<string,string>(sum.first,register_Rn));
             }
         }
-        ir = binary_to_hex("11001"+immediate);
+        ir = binary_to_hex("01111"+immediate);
         ir_explained = "STI " + immediate;
+        pc++;
+    }
+
+    // adding and removing from the stack
+    void STK(string immediate) {
+        assert(immediate.length() == 11);
+        if(immediate[10-10] == '0') { // PSH
+            PSH(immediate);
+        } else if(immediate[10-10] == '1') { // POP
+            POP(immediate);
+        }
+        ir = binary_to_hex("01101"+immediate);
+        ir_explained = "STK " + immediate;
         pc++;
     }
 
     // adding to the stack
     void PSH(string immediate) {
         assert(immediate.length() == 11);
-        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        string which_register = string(1,immediate[10-9])+string(1,immediate[10-8]);
         string pushed_value;
         if(which_register == "00") {
             pushed_value = reg0;
@@ -1057,15 +1041,12 @@ public:
         }
         assert(pushed_value.length() == 16);
         stack.push_back(pushed_value);
-        ir = binary_to_hex("11010"+immediate);
-        ir_explained = "PSH " + immediate;
-        pc++;
     }
 
     // removing from the stack
     void POP(string immediate) {
         assert(immediate.length() == 11);
-        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        string which_register = string(1,immediate[10-9])+string(1,immediate[10-8]);
         string popped_value;
         if(stack.empty()) {
             popped_value = "0000000000000000";
@@ -1085,9 +1066,6 @@ public:
         if(!stack.empty()) {
             stack.resize(stack.size()-1);
         }
-        ir = binary_to_hex("11011"+immediate);
-        ir_explained = "POP " + immediate;
-        pc++;
     }
 
     // Rn := Rm XSL N
@@ -1147,7 +1125,7 @@ public:
                 m_carry = 0;
             }
         }
-        ir = binary_to_hex("01001"+immediate);
+        ir = binary_to_hex("01010"+immediate);
         ir_explained = "XSL " + immediate;
         pc++;
     }
@@ -1209,7 +1187,7 @@ public:
                 m_carry = 0;
             }
         }
-        ir = binary_to_hex("01010"+immediate);
+        ir = binary_to_hex("01011"+immediate);
         ir_explained = "XSR " + immediate;
         pc++;
     }
@@ -1271,7 +1249,7 @@ public:
         } else {
             pc++;
         }
-        ir = binary_to_hex("01110"+immediate);
+        ir = binary_to_hex("11100"+immediate);
         ir_explained = "JMR " + immediate;
     }
 
@@ -1279,8 +1257,32 @@ public:
     void JMP(string immediate) {
         assert(immediate.length() == 11);
         pc = stoi(immediate,nullptr,2);
-        ir = binary_to_hex("01111"+immediate);
+        ir = binary_to_hex("11101"+immediate);
         ir_explained = "JMP " + immediate;
+    }
+
+    // PC = N if R0 = 0
+    void JEQ(string immediate) {
+        assert(immediate.length() == 11);
+        if(reg0 == "0000000000000000") {
+            pc = stoi(immediate,nullptr,2);
+        } else {
+            pc++;
+        }
+        ir = binary_to_hex("11110"+immediate);
+        ir_explained = "JEQ " + immediate;
+    }
+
+    // PC = N if R0 != 0
+    void JNQ(string immediate) {
+        assert(immediate.length() == 11);
+        if(reg0 != "0000000000000000") {
+            pc = stoi(immediate,nullptr,2);
+        } else {
+            pc++;
+        }
+        ir = binary_to_hex("11111"+immediate);
+        ir_explained = "JNQ " + immediate;
     }
 
     // stops the program from executing further instructions
