@@ -22,9 +22,5 @@ ADDRESS_RADIX=UNS;
 DATA_RADIX=HEX;
 
 CONTENT BEGIN
-	0     :   0000;
-	1     :   ABCD;
-	[2..3]  :   0000;
-	4     :   ACC0;
-	[5..4095]  :   0000;
+	[0..4095]  :   0000;
 END;

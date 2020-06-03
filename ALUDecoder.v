@@ -37,7 +37,7 @@ assign xsr = ~A &  B & ~C &  D &  E;
 assign bbo = ~A &  B &  C & ~D & ~E;
 
 assign ldr = ~A &  B &  C &  D & ~E;
-assign sti =  A &  B &  C &  D &  E;
+assign sti = ~A &  B &  C &  D &  E;
 
 
 
