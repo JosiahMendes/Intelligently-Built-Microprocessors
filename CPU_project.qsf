@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY ALU3
+set_global_assignment -name TOP_LEVEL_ENTITY CPU
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:25:21  MAY 15, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
@@ -47,6 +47,12 @@ set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE State_Select.v
+set_global_assignment -name BDF_FILE DFF3.bdf
+set_global_assignment -name VERILOG_FILE State_Output.v
+set_global_assignment -name BDF_FILE State_Machine.bdf
 set_global_assignment -name BDF_FILE Wallace_multiplier.bdf
 set_global_assignment -name VERILOG_FILE halfAdder.v
 set_global_assignment -name VERILOG_FILE fullAdder.v
@@ -55,7 +61,6 @@ set_global_assignment -name VERILOG_FILE halfAdderNoC.v
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
 set_global_assignment -name BDF_FILE CPU.bdf
 set_global_assignment -name QIP_FILE ALU.qip
-set_global_assignment -name BDF_FILE Wallace_Multiplier_With_Carrry.bdf
 set_global_assignment -name BDF_FILE Wallace_Multiplier_With_Carry.bdf
 set_global_assignment -name VERILOG_FILE SecondFullAdder.v
 set_global_assignment -name VERILOG_FILE CBitIdentifier.v
@@ -81,7 +86,6 @@ set_global_assignment -name VERILOG_FILE NOT16.v
 set_global_assignment -name VERILOG_FILE BAND16.v
 set_global_assignment -name VERILOG_FILE BOR16.v
 set_global_assignment -name VERILOG_FILE XOR16.v
-set_global_assignment -name VERILOG_FILE BNAND.v
 set_global_assignment -name VERILOG_FILE BNAND16.v
 set_global_assignment -name VERILOG_FILE BNOR16.v
 set_global_assignment -name VERILOG_FILE XNOR16.v
@@ -89,7 +93,6 @@ set_global_assignment -name BDF_FILE BBO.bdf
 set_global_assignment -name QIP_FILE MUX8.qip
 set_global_assignment -name BDF_FILE BBOShell.bdf
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform7.vwf
-set_global_assignment -name SYSTEMVERILOG_FILE ShiftDecoder2.sv
 set_global_assignment -name VERILOG_FILE ShiftDecoder2.v
 set_global_assignment -name QIP_FILE MUX2.qip
 set_global_assignment -name BDF_FILE ALU2.bdf
@@ -101,6 +104,10 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform9.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform10.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform11.vwf
 set_global_assignment -name QIP_FILE MUX5.qip
+set_global_assignment -name MIF_FILE Test_Instructs.mif
+set_global_assignment -name MIF_FILE Test_Data.mif
+set_global_assignment -name VERILOG_FILE Decoder.v
+set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform13.vwf
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
