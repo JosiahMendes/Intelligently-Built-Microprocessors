@@ -189,6 +189,11 @@ int main(int argc, char *argv[])
                 instrb = "11111";
                 FileOut << "\t" + to_string(address) + "     :   " + instrb + lazyImplement() + ";" << endl;
             }
+            else if (instruction == "STP")
+            {
+                instrb = "00000";
+                FileOut << "\t" + to_string(address) + "     :   " + instrb + lazyImplement() + ";" << endl;
+            }
             address++;
         }
         else
