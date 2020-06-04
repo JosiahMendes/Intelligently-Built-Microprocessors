@@ -341,7 +341,6 @@ public:
                 carry_in = 1;
             }
         }
-        string addition_result;
         string immediate_offset = string(1,immediate[10-7]) + string(1,immediate[10-6]);
         pair<string,bool> result;
         if(immediate_offset == "00") { // no offset
@@ -381,7 +380,7 @@ public:
         pc++;
     }
 
-    // R0 := R0 + Mem[N], carry always written
+    // R0 := Rn + Mem[N], carry always written
     void ADM(string immediate) {
         assert(immediate.length() == 12);
         string location = "00000";
@@ -480,7 +479,7 @@ public:
                 m_carry = 0;
             }
         }
-        ir = binary_to_hex("00100"+immediate);
+        ir = binary_to_hex("00101"+immediate);
         ir_explained = "SBR " + immediate;
         pc++;
     }
@@ -584,7 +583,7 @@ public:
                 m_carry = 0;
             }
         }
-        ir = binary_to_hex("00111"+immediate);
+        ir = binary_to_hex("01001"+immediate);
         ir_explained = "MLR " + immediate;
         pc++;
     }
@@ -689,7 +688,7 @@ public:
         } else {
             m_carry = 0;
         }
-        ir = binary_to_hex("00011"+immediate);
+        ir = binary_to_hex("00100"+immediate);
         ir_explained = "ADI " + immediate;
         pc++;
     }
@@ -720,7 +719,7 @@ public:
         } else {
             m_carry = 0;
         }
-        ir = binary_to_hex("00110"+immediate);
+        ir = binary_to_hex("01000"+immediate);
         ir_explained = "SBI " + immediate;
         pc++;
     }
@@ -750,9 +749,9 @@ public:
 
     // Rn := Mem[Ra+N] or Mem[Ra+Rb<<s]
     void LDR(string immediate) {
-        assert(immediate.length() == 13);
-        string which_register = string(1,immediate[12-12])+string(1,immediate[12-11]);
-        string register_holding_address = string(1,immediate[12-9])+string(1,immediate[12-8]);
+        assert(immediate.length() == 11);
+        string which_register = string(1,immediate[10-10])+string(1,immediate[10-9]);
+        string register_holding_address = string(1,immediate[10-7])+string(1,immediate[10-6]);
         string r_a_value;
         if(register_holding_address == "00") {
             r_a_value = reg0;
@@ -765,15 +764,15 @@ public:
         }
         assert(r_a_value.length() == 16);
         pair<string,bool> sum;
-        if(immediate[12-10] == '0') { // register with immediate offset. Rn := mem[Ra+N]
-            string immediate_value_16 = "00000000";
-            for(int i = 12-7; i <= 12-0; i++) {
+        if(immediate[10-8] == '0') { // register with immediate offset. Rn := mem[Ra+N]
+            string immediate_value_16 = "0000000000";
+            for(int i = 10-5; i <= 10-0; i++) {
                 immediate_value_16 = immediate_value_16 + immediate[i];
             }
             assert(immediate_value_16.length() == 16);
             sum = addition(r_a_value,immediate_value_16,0);
-        } else if(immediate[12-10] == '1') { // register with scaled register offset. Rn := mem[Ra+Rb<<s]
-            string register_holding_offset = string(1,immediate[12-7])+string(1,immediate[12-6]);
+        } else if(immediate[10-8] == '1') { // register with scaled register offset. Rn := mem[Ra+Rb<<s]
+            string register_holding_offset = string(1,immediate[10-5])+string(1,immediate[10-4]);
             string r_b_value;
             if(register_holding_offset == "00") {
                 r_b_value = reg0;
@@ -786,10 +785,10 @@ public:
             }
             assert(r_b_value.length() == 16);
             string shift_value;
-            for(int i = 12-5; i <= 12-0; i++) {
+            for(int i = 10-3; i <= 10-0; i++) {
                 shift_value = shift_value + immediate[i];
             }
-            assert(shift_value.length() == 6);
+            assert(shift_value.length() == 4);
             string shifted_r_b = left_shift(r_b_value,stoi(shift_value,nullptr,2));
             sum = addition(r_a_value,shifted_r_b,0);
         }
@@ -943,7 +942,7 @@ public:
         assert(immediate.length() == 11);
         string which_register = string(1,immediate[10-9])+string(1,immediate[10-8])+string(1,immediate[10-7]);
         string pushed_value;
-        string n_value = "";
+        string n_value = "0000000000";
         if(which_register == "000") {
             pushed_value = reg0;
         } else if(which_register == "001") {
@@ -956,19 +955,18 @@ public:
             pushed_value = decimal_to_binary(pc);
         }
         assert(pushed_value.length() == 16);
-        for(int i = 10-6; i <= 10-0; i++) {
+        pair<string,bool> result;
+        for(int i = 10-5; i <= 10-0; i++) {
             n_value = n_value + immediate[i];
         }
-        assert(n_value.length() == 7);
-        if(n_value[0] == '0') {
-            n_value = "000000000" + n_value;
-        } else {
-            n_value = "111111111" + n_value;
-        }
         assert(n_value.length() == 16);
-        pair<string,bool> sum = addition(pushed_value,n_value,0);
-        assert(sum.first.length() == 16);
-        stack.push_back(sum.first);
+        if(immediate[10-6] == '0') {
+            result = addition(pushed_value,n_value,0);
+        } else {
+            result = subtraction(pushed_value,n_value,0);
+        }
+        assert(result.first.length() == 16);
+        stack.push_back(result.first);
     }
 
     // removing from the stack
