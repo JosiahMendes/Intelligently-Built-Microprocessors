@@ -19,33 +19,26 @@ Intel and sold by Intel or its authorized distributors.  Please
 refer to the applicable agreement for further details, at
 https://fpgasoftware.intel.com/eula.
 */
-(header "symbol" (version "1.2"))
+(header "symbol" (version "1.1"))
 (symbol
-	(rect 64 64 216 144)
-	(text "State_Select" (rect 5 0 67 12)(font "Arial" ))
-	(text "inst" (rect 8 64 25 76)(font "Arial" ))
-	(port
-		(pt 0 48)
-		(input)
-		(text "e1" (rect 0 0 11 12)(font "Arial" ))
-		(text "e1" (rect 21 43 32 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48))
-	)
+	(rect 16 16 168 96)
+	(text "And16Low" (rect 5 0 47 12)(font "Arial" ))
+	(text "inst" (rect 8 64 20 76)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
-		(text "c[2..0]" (rect 0 0 31 12)(font "Arial" ))
-		(text "c[2..0]" (rect 21 27 52 39)(font "Arial" ))
+		(text "data[15..0]" (rect 0 0 40 12)(font "Arial" ))
+		(text "data[15..0]" (rect 21 27 61 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32)(line_width 3))
 	)
 	(port
 		(pt 152 32)
 		(output)
-		(text "n[2..0]" (rect 0 0 31 12)(font "Arial" ))
-		(text "n[2..0]" (rect 105 27 131 39)(font "Arial" ))
-		(line (pt 152 32)(pt 136 32)(line_width 3))
+		(text "eq" (rect 0 0 9 12)(font "Arial" ))
+		(text "eq" (rect 122 27 131 39)(font "Arial" ))
+		(line (pt 152 32)(pt 136 32)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 136 64))
+		(rectangle (rect 16 16 136 64)(line_width 1))
 	)
 )

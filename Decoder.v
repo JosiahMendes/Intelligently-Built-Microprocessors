@@ -1,10 +1,24 @@
 module Decoder (
 	input [15:0] INSTR,
 	output reg [15:0] q,
+	output reg [1:0]out_sel,
 	
-	input f, e1, e2, e3,
+	input fe, e1, e2, eq, jmrCond,
 	
-	output  instr_wren, instr_rden, data_wren, data_rden, pc_sload, pc_cnten, r0en, r1en, r2en, r3en, mux1_sel, extra1, extra2
+	output  instr_wren, instr_rden, 
+	output data_wren, data_rden, 
+	output pc_sload, pc_cnten, 
+	output r0en, r1en, r2en, r3en, 
+	output extra1,
+	
+	output carry_en,
+	output reg [1:0] carry_sel,
+	
+	output reg [1:0] mux1_sel, 
+	output mux2_sel,
+	output reg[1:0] pcmux_sel
+	
+	
 	
 	);
 
@@ -30,56 +44,91 @@ assign O = INSTR[1];
 assign P = INSTR[0];
 
 
-wire stp, adr, adm, adi, sbr, sbm, sbi, mlr, mlm, xsl, xsr, bbo, bfe, jmr, jmp, ldi, sta, ldr, sti, psh, pop, lda;
+wire stp, adr, adm, adi, sbr, sbm, sbi, mlr, xsl, xsr, bbo, stk, ldr, sti, ldi, sta, lda, jmr, jmp, jeq, jnq;
 
 assign stp = ~A & ~B & ~C & ~D & ~E;
+
 assign adr = ~A & ~B & ~C & ~D &  E; 
-assign adm = ~A & ~B & ~C &  D & ~E;
-assign adi = ~A & ~B & ~C &  D &  E;
-assign sbr = ~A & ~B &  C & ~D & ~E;
-assign sbm = ~A & ~B &  C & ~D &  E;
-assign sbi = ~A & ~B &  C &  D & ~E;    
-assign mlr = ~A & ~B &  C &  D &  E;
-assign mlm = ~A &  B & ~C & ~D & ~E; 
-assign xsl = ~A &  B & ~C & ~D &  E; 
-assign xsr = ~A &  B & ~C &  D & ~E;
-assign bbo = ~A &  B & ~C &  D &  E;
-assign bfe = ~A &  B &  C & ~D;
-assign jmr = ~A &  B &  C &  D & ~E;
-assign jmp = ~A &  B &  C &  D &  E;
+assign adm = ~A & ~B & ~C &  D;
+assign adi = ~A & ~B &  C & ~D & ~E;
+assign sbr = ~A & ~B &  C & ~D &  E;
+assign sbm = ~A & ~B &  C &  D;
+assign sbi = ~A &  B & ~C & ~D & ~E;    
+assign mlr = ~A &  B & ~C & ~D &  E;
+assign xsl = ~A &  B & ~C &  D & ~E; 
+assign xsr = ~A &  B & ~C &  D &  E;
+assign bbo = ~A &  B &  C & ~D & ~E;
+
+assign stk = ~A &  B &  C & ~D &  E;
+assign ldr = ~A &  B &  C &  D & ~E;
+assign sti = ~A &  B &  C &  D &  E;
 assign ldi =  A & ~B & ~C;
 assign sta =  A & ~B &  C;
-assign ldr =  A &  B & ~C & ~D & ~E;
-assign sti =  A &  B & ~C & ~D &  E;
-assign psh =  A &  B & ~C &  D & ~E;
-assign pop =  A &  B & ~C &  D &  E;
-assign lda =  A &  B &  C;
+assign lda =  A &  B & ~C;
 
-assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | mlm | xsl | xsr | bbo | bfe | ldi| sta | ldr | sti | psh | pop |lda);
-assign pc_sload = e1 & (jmp);
+assign jmr =  A &  B &  C & ~D & ~E;
+assign jmp =  A &  B &  C & ~D &  E;
+assign jeq =  A &  B &  C &  D & ~E;
+assign jnq =  A &  B &  C &  D &  E;
+
+
+assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | stk| lda | (jeq &!eq) | (jnq & eq) | (jmr & !jmrCond));
+assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond));
 
 assign instr_wren = 0;
-assign instr_rden = f;
+assign instr_rden = fe;
 
-assign data_wren = 0;
+assign data_wren = (sta&e1)|(sti&e1);
 assign data_rden = 1;
 
-assign r0en = (ldi & ~D & ~E & e1);
-assign r1en = (ldi & ~D &  E & e1);
-assign r2en = (ldi &  D & ~E & e1);
-assign r3en = (ldi &  D &  E & e1);
+assign r0en = (ldi & ~D & ~E & e1) | (lda & ~D & ~E & e2) | (ldr & ~F & ~G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M & ~N & e1) | ((adi|sbi) & ~F & ~G & e1) | ((adm|sbm) & ~E & e2);
+assign r1en = (ldi & ~D &  E & e1) | (lda & ~D &  E & e2) | (ldr & ~F &  G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M &  N & e1) | ((adi|sbi) & ~F &  G & e1) | ((adm|sbm) &  E & e2);
+assign r2en = (ldi &  D & ~E & e1) | (lda &  D & ~E & e2) | (ldr &  F & ~G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M & ~N & e1) | ((adi|sbi) &  F & ~G & e1);
+assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M &  N & e1) | ((adi|sbi) &  F &  G & e1);
 
-assign mux1_sel = (ldi&e1);
+//assign mux1_sel = (ldi&e1);
+assign mux2_sel = (ldr&e1)|(sti&e1);
+assign extra1 = (lda)|(ldr)|(adm)|(sbm);
 
-
+assign carry_en = ((adr|sbr|mlr|xsl|xsr) & e1 & F) | ((adi|sbi) & e1) | ((adm|sbm) & e2);
 
 always @(*)
-	if (ldi&e1) begin 
+	if (ldi&e1)
+		mux1_sel[1:0] = 2'b01;
+	else if (((adr|sbr|mlr|bbo|xsl|xsr|adi|sbi)&e1)|((adm|sbm)&e2))
+		mux1_sel[1:0] = 2'b10;
+	else 
+		mux1_sel[1:0] = 2'b00;
+
+		
+always @(*)
+	if ((ldi&e1)|(lda&e1)|(sta&e1)) begin 
 		 q[15:11] =  5'b0;
 		 q[10:0] = INSTR[10:0];
-	end
-		
+	end else 
+		q[15:0] = INSTR[10:0];
+	
+always @(*)
+	if (sta&e1)
+		out_sel[1:0] = INSTR[12:11];
+	else if (sti&e1)
+		out_sel[1:0] = INSTR[10:9];
+	else if (jmr&e1)
+		out_sel[1:0] = INSTR[1:0];
+	else 
+		out_sel[1:0] = 2'b0;
 
+always @(*)
+	if ((adr|sbr|mlr|xsl|xsr) & e1)
+		carry_sel[1:0] = INSTR[9:8];
+	else 
+		carry_sel[1:0] = 2'b0;
+
+always @(*)
+	if (jmr & e1)
+		pcmux_sel[1:0] = 2'b01;
+	else 
+		pcmux_sel[1:0] = 2'b00;
 
 
 
