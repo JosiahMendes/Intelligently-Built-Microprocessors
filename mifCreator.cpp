@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    FileOut << "\t[" + to_string(address) + "..4095]" + "     :   " + "0000000000000000;" << endl;
+    FileOut << "\t[" + to_string(address) + "..2047]" + "     :   " + "0000000000000000;" << endl;
     FileOut << "END;" << endl;
 
     FileOut.close();
