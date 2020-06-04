@@ -3,7 +3,7 @@ module Decoder (
 	output reg [15:0] q,
 	output reg [1:0]out_sel,
 	
-	input fe, e1, e2, 
+	input fe, e1, e2, eq, jmrCond,
 	
 	output  instr_wren, instr_rden, 
 	output data_wren, data_rden, 
@@ -15,7 +15,8 @@ module Decoder (
 	output reg [1:0] carry_sel,
 	
 	output reg [1:0] mux1_sel, 
-	output mux2_sel
+	output mux2_sel,
+	output reg[1:0] pcmux_sel
 	
 	
 	
@@ -71,8 +72,8 @@ assign jeq =  A &  B &  C &  D & ~E;
 assign jnq =  A &  B &  C &  D &  E;
 
 
-assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | stk| lda);
-assign pc_sload = e1 & (jmp);
+assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | stk| lda | (jeq &!eq) | (jnq & eq) | (jmr & !jmrCond));
+assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond));
 
 assign instr_wren = 0;
 assign instr_rden = fe;
@@ -87,14 +88,14 @@ assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2)
 
 //assign mux1_sel = (ldi&e1);
 assign mux2_sel = (ldr&e1)|(sti&e1);
-assign extra1 = (lda)|(ldr);
+assign extra1 = (lda)|(ldr)|(adm)|(sbm);
 
 assign carry_en = ((adr|sbr|mlr|xsl|xsr) & e1 & F) | ((adi|sbi) & e1) | ((adm|sbm) & e2);
 
 always @(*)
 	if (ldi&e1)
 		mux1_sel[1:0] = 2'b01;
-	else if (adr&e1)
+	else if (((adr|sbr|mlr|bbo|xsl|xsr|adi|sbi)&e1)|((adm|sbm)&e2))
 		mux1_sel[1:0] = 2'b10;
 	else 
 		mux1_sel[1:0] = 2'b00;
@@ -112,6 +113,8 @@ always @(*)
 		out_sel[1:0] = INSTR[12:11];
 	else if (sti&e1)
 		out_sel[1:0] = INSTR[10:9];
+	else if (jmr&e1)
+		out_sel[1:0] = INSTR[1:0];
 	else 
 		out_sel[1:0] = 2'b0;
 
@@ -120,6 +123,12 @@ always @(*)
 		carry_sel[1:0] = INSTR[9:8];
 	else 
 		carry_sel[1:0] = 2'b0;
+
+always @(*)
+	if (jmr & e1)
+		pcmux_sel[1:0] = 2'b01;
+	else 
+		pcmux_sel[1:0] = 2'b00;
 
 
 

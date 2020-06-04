@@ -1,10 +1,10 @@
-module LIFOBlock#(parameter depth = 16, parameter width = 16, log2_depth = log2(depth), log2_depthp1 = log2(depth+1))(
-	input[width-1:0] data;
-	input reset, clock, push, pop;
+module LIFOBlock#(parameter depth = 16, log2_depth = log2(depth), log2_depthp1 = log2(depth+1))(
+	input[15:0] data,
+	input reset, clock, push, pop,
 
-	output reg empty, full;
-	output [width-1:0] q;
-	output reg [log2_depthp1-1:0] count;
+	output reg empty, full,
+	output [15:0] q,
+	output reg [log2_depthp1-1:0] count
 	);
 
 function integer log2;
@@ -45,19 +45,19 @@ always @(posedge clock)
 
 wire[5:0] stackPointer = writing ? count[log2_depth-1:0] : (count[log2_depth-1:0])-1;
 
-reg [width-1:0] stack[depth-1:0];
+reg [15:0] stack[depth-1:0];
 
 always @(posedge clock)
 	if (writing && !reading)
 		stack[stackPointer] <= q;
 
-reg[width-1:0] reader;
+reg[15:0] reader;
 always @(posedge clock)
 	if(reading)
 		reader <= stack[stackPointer];
 
 	
-reg [width-1:0] writer;
+reg [15:0] writer;
 always @(posedge clock)
 	if(writing)
 		writer <= data;

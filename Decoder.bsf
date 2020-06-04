@@ -53,6 +53,20 @@ https://fpgasoftware.intel.com/eula.
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
+		(pt 0 96)
+		(input)
+		(text "eq" (rect 0 0 9 12)(font "Arial" ))
+		(text "eq" (rect 21 91 30 103)(font "Arial" ))
+		(line (pt 0 96)(pt 16 96)(line_width 1))
+	)
+	(port
+		(pt 0 112)
+		(input)
+		(text "jmrCond" (rect 0 0 34 12)(font "Arial" ))
+		(text "jmrCond" (rect 21 107 55 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
 		(pt 216 32)
 		(output)
 		(text "q[15..0]" (rect 0 0 28 12)(font "Arial" ))
@@ -170,6 +184,13 @@ https://fpgasoftware.intel.com/eula.
 		(text "mux2_sel" (rect 0 0 38 12)(font "Arial" ))
 		(text "mux2_sel" (rect 157 283 195 295)(font "Arial" ))
 		(line (pt 216 288)(pt 200 288)(line_width 1))
+	)
+	(port
+		(pt 216 304)
+		(output)
+		(text "pcmux_sel[1..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "pcmux_sel[1..0]" (rect 133 299 195 311)(font "Arial" ))
+		(line (pt 216 304)(pt 200 304)(line_width 3))
 	)
 	(drawing
 		(rectangle (rect 16 16 200 320)(line_width 1))

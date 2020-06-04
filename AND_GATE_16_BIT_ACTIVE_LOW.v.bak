@@ -1,0 +1,14 @@
+module AND_GATE_16_BIT_ACTIVE_LOW
+(
+	input [15:0]data,
+	output eq
+);
+
+	wire [15:0]low;
+
+	assign low = ~data;
+	
+	//assign eq = low[15] & low[14] & low[13] & low[12] & low[11] & low[10] & low[9] & low[8] & low[7] & low[6] & low[5] & low[4] & low[3] & low[2] & low[1] & low[0];
+	assign eq = &low;
+	
+endmodule
