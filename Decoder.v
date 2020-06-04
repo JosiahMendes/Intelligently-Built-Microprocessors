@@ -16,9 +16,9 @@ module Decoder (
 	
 	output reg [1:0] mux1_sel, 
 	output mux2_sel,
-	output reg[1:0] pcmux_sel
+	output reg[1:0] pcmux_sel,
 	
-	
+	output reg[1:0] rn_sel, rx_sel
 	
 	);
 
@@ -125,10 +125,15 @@ always @(*)
 		carry_sel[1:0] = 2'b0;
 
 always @(*)
-	if (jmr & e1)
+	if (jmr & e1) begin
 		pcmux_sel[1:0] = 2'b01;
-	else 
+		rn_sel[1:0] = INSTR[3:2];
+		rx_sel[1:0] = INSTR[5:4];
+	end else begin
 		pcmux_sel[1:0] = 2'b00;
+		rn_sel[1:0] = 2'b00;
+		rx_sel[1:0] = 2'b00;
+	end
 
 
 
