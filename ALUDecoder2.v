@@ -1,4 +1,4 @@
-module ALUDecoder(input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, output Shift_in, output ShiftCOUTSel, output [3:0] SL, output [3:0] SR, output [1:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel);
+module ALUDecoder2(input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, output Shift_in, output ShiftCOUTSel, output [3:0] SL, output [3:0] SR, output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel);
 
 wire A, B,C, D, E, F, G, H, I, J, K, L, M, N, O, P;
 
@@ -40,13 +40,13 @@ assign sti = ~A &  B &  C &  D &  E;
 
 
 
-
+assign RnSelect[2] = stk;
 assign RnSelect[1] = ((adr|sbr|mlr|bbo)&M)|((adi|sbi)&F)|((ldr|sti)&I);
-assign RnSelect[0] = ((adr|sbr|mlr|bbo)&N)|((adi|sbi)&G)|((ldr|sti)&J);
+assign RnSelect[0] = ((adr|sbr|mlr|bbo)&N)|((adi|sbi)&G)|((ldr|sti)&J)|((adm|sbm)&E);
 
-assign RmSelect[2] = (adm|sbm|mlm|adi|sbi)|((ldr|sti)&~H);
-assign RmSelect[1] = ((adr|sbr|mlr|bbo|bfe|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H);
-assign RmSelect[0] = ((adr|sbr|mlr|bbo|bfe|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi);
+assign RmSelect[2] = (adm|sbm|adi|sbi)|((ldr|sti)&~H)&(stk&G);
+assign RmSelect[1] = ((adr|sbr|mlr|bbo|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H)|(stk&(G|H));
+assign RmSelect[0] = ((adr|sbr|mlr|bbo|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi)|(stk&(G|I));
 
 assign RxSelect[1] = (adr|sbr|mlr)&K;
 assign RxSelect[0] = (adr|sbr|mlr)&L;
@@ -69,21 +69,21 @@ assign SR[1] = (xsr&K)|( (adr|sbr|mlr) & I & J & Rx[3]);
 assign SR[0] = (xsr&L)|( (adr|sbr|mlr) & I & J & Rx[3]);
 
 
-assign CINadd_sub = ((adr|mlr)&((~G&H)|(G&~H&CARRY)|(G&H&Rm[15]))) | (sbr&((~G&~H)|(G&~H&~CARRY)|(G&H&~Rm[15]))) | (sbm|sbi);
+assign CINadd_sub = ((adr|mlr)&((~G&H)|(G&~H&CARRY)|(G&H&Rm[15]))) | (sbr&((~G&~H)|(G&~H&~CARRY)|(G&H&~Rm[15]))) | (sbm|sbi|(stk&J));
 
-assign add_sub = !(sbr|sbm|sbi);
+assign add_sub = !(sbr|sbm|sbi|(stk&J));
 
 
-assign multiplication = mlr|mlm;
+assign multiplication = mlr;
 
 assign BBO = bbo;
 
-assign OPSel[1] = bfe|xsl|xsr;
+assign OPSel[1] = xsl|xsr;
 assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo;
 
 assign COUTSel[2] = (mlr&~I&J)|(sbi|sbm|sbr);
 assign COUTSel[1] = xsl|xsr|(sbr&~I&J);
-assign COUTSel[0] = (adr&~I&J)|mlm|(mlr&~(~I&J))|(sbm|sbi)|(sbr&~(~I&J));
+assign COUTSel[0] = (adr&~I&J)|(mlr&~(~I&J))|(sbm|sbi)|(sbr&~(~I&J));
 
 
 endmodule
