@@ -3,7 +3,7 @@ module Decoder (
 	output reg [15:0] q,
 	output reg [1:0]out_sel,
 	
-	input fe, e1, e2, eq, jmrCond,
+	input fe, e1, e2, eq, stackFull, stackEmpty, jmrCond,
 	
 	output  instr_wren, instr_rden, 
 	output data_wren, data_rden, 
@@ -18,7 +18,9 @@ module Decoder (
 	output mux2_sel,
 	output reg[1:0] pcmux_sel,
 	
-	output reg[1:0] rn_sel, rx_sel
+	output reg[1:0] rn_sel, rx_sel,
+	
+	output pushEn, popEn
 	
 	);
 
@@ -71,9 +73,14 @@ assign jmp =  A &  B &  C & ~D &  E;
 assign jeq =  A &  B &  C &  D & ~E;
 assign jnq =  A &  B &  C &  D &  E;
 
+wire psh, pop;
 
-assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | stk| lda | (jeq &!eq) | (jnq & eq) | (jmr & !jmrCond));
-assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond));
+assign psh = stk & ~F;
+assign pop = stk & F;
+
+
+assign pc_cnten = e1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | lda | (jeq &!eq) | (jnq & eq) | (jmr & !jmrCond) | psh | (pop & (stackEmpty | !(G & ~H & ~I))));
+assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond)|(pop & G & ~H & ~I & !stackEmpty));
 
 assign instr_wren = 0;
 assign instr_rden = fe;
@@ -81,10 +88,11 @@ assign instr_rden = fe;
 assign data_wren = (sta&e1)|(sti&e1);
 assign data_rden = 1;
 
-assign r0en = (ldi & ~D & ~E & e1) | (lda & ~D & ~E & e2) | (ldr & ~F & ~G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M & ~N & e1) | ((adi|sbi) & ~F & ~G & e1) | ((adm|sbm) & ~E & e2);
-assign r1en = (ldi & ~D &  E & e1) | (lda & ~D &  E & e2) | (ldr & ~F &  G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M &  N & e1) | ((adi|sbi) & ~F &  G & e1) | ((adm|sbm) &  E & e2);
-assign r2en = (ldi &  D & ~E & e1) | (lda &  D & ~E & e2) | (ldr &  F & ~G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M & ~N & e1) | ((adi|sbi) &  F & ~G & e1);
-assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M &  N & e1) | ((adi|sbi) &  F &  G & e1);
+assign r0en = (ldi & ~D & ~E & e1) | (lda & ~D & ~E & e2) | (ldr & ~F & ~G & e2) | (pop & ~G & ~H & ~I & e1 & !stackEmpty) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M & ~N & e1) | ((adi|sbi) & ~F & ~G & e1) | ((adm|sbm) & ~E & e2);
+assign r1en = (ldi & ~D &  E & e1) | (lda & ~D &  E & e2) | (ldr & ~F &  G & e2) | (pop & ~G & ~H &  I & e1 & !stackEmpty) | ((adr|sbr|mlr|bbo|xsl|xsr) & ~M &  N & e1) | ((adi|sbi) & ~F &  G & e1) | ((adm|sbm) &  E & e2);
+assign r2en = (ldi &  D & ~E & e1) | (lda &  D & ~E & e2) | (ldr &  F & ~G & e2) | (pop & ~G &  H & ~I & e1 & !stackEmpty) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M & ~N & e1) | ((adi|sbi) &  F & ~G & e1);
+assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2) | (pop & ~G &  H &  I & e1 & !stackEmpty) | ((adr|sbr|mlr|bbo|xsl|xsr) &  M &  N & e1) | ((adi|sbi) &  F &  G & e1);
+
 
 //assign mux1_sel = (ldi&e1);
 assign mux2_sel = (ldr&e1)|(sti&e1);
@@ -92,11 +100,16 @@ assign extra1 = (lda)|(ldr)|(adm)|(sbm);
 
 assign carry_en = ((adr|sbr|mlr|xsl|xsr) & e1 & F) | ((adi|sbi) & e1) | ((adm|sbm) & e2);
 
+assign pushEn = (psh & e1);
+assign popEn = (pop & e1);
+
 always @(*)
 	if (ldi&e1)
 		mux1_sel[1:0] = 2'b01;
 	else if (((adr|sbr|mlr|bbo|xsl|xsr|adi|sbi)&e1)|((adm|sbm)&e2))
 		mux1_sel[1:0] = 2'b10;
+	else if (pop & e1 & ~G & !stackEmpty)
+		mux1_sel[1:0] = 2'b11;
 	else 
 		mux1_sel[1:0] = 2'b00;
 
@@ -126,14 +139,20 @@ always @(*)
 
 always @(*)
 	if (jmr & e1) begin
-		pcmux_sel[1:0] = 2'b01;
 		rn_sel[1:0] = INSTR[3:2];
 		rx_sel[1:0] = INSTR[5:4];
 	end else begin
-		pcmux_sel[1:0] = 2'b00;
 		rn_sel[1:0] = 2'b00;
 		rx_sel[1:0] = 2'b00;
 	end
+
+always @(*)
+	if (jmr & e1) 
+		pcmux_sel[1:0] = 2'b01;
+	else if (pop & e1 & G & ~H & ~I & !stackEmpty)
+		pcmux_sel[1:0] = 2'b10;
+	else 
+		pcmux_sel[1:0] = 2'b00;
 
 
 
