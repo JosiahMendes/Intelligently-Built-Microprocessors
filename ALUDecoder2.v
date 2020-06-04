@@ -20,7 +20,7 @@ assign O = INSTR[1];
 assign P = INSTR[0];
 
 
-wire  adr, adm, adi, sbr, sbm, sbi, mlr, xsl, xsr, bbo, stk, ldr, sti;
+wire  adr, adm, adi, sbr, sbm, sbi, mlr, xsl, xsr, bbo, stk, ldr, sti, jmr;
 
 
 assign adr = ~A & ~B & ~C & ~D &  E; 
@@ -38,6 +38,8 @@ assign stk = ~A &  B &  C & ~D &  E;
 assign ldr = ~A &  B &  C &  D & ~E;
 assign sti = ~A &  B &  C &  D &  E;
 
+assign jmr =  A &  B &  C & ~D & ~E;
+
 
 
 assign RnSelect[2] = stk;
@@ -48,8 +50,8 @@ assign RmSelect[2] = (adm|sbm|adi|sbi)|((ldr|sti)&~H)&(stk&G);
 assign RmSelect[1] = ((adr|sbr|mlr|bbo|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H)|(stk&(G|H));
 assign RmSelect[0] = ((adr|sbr|mlr|bbo|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi)|(stk&(G|I));
 
-assign RxSelect[1] = (adr|sbr|mlr)&K;
-assign RxSelect[0] = (adr|sbr|mlr)&L;
+assign RxSelect[1] = ((adr|sbr|mlr)&K)|(jmr&O);
+assign RxSelect[0] = ((adr|sbr|mlr)&L)|(jmr&P);
 
 
 
@@ -78,8 +80,8 @@ assign multiplication = mlr;
 
 assign BBO = bbo;
 
-assign OPSel[1] = xsl|xsr;
-assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo;
+assign OPSel[1] = xsl|xsr|jmr;
+assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo|jmr;
 
 assign COUTSel[2] = (mlr&~I&J)|(sbi|sbm|sbr);
 assign COUTSel[1] = xsl|xsr|(sbr&~I&J);
