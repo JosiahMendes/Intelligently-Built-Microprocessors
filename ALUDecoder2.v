@@ -84,8 +84,8 @@ assign OPSel[1] = xsl|xsr|jmr;
 assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo|jmr;
 
 assign COUTSel[2] = (mlr&~I&J)|(sbi|sbm|sbr);
-assign COUTSel[1] = xsl|xsr|(sbr&~I&J);
-assign COUTSel[0] = (adr&~I&J)|(mlr&~(~I&J))|(sbm|sbi)|(sbr&~(~I&J));
+assign COUTSel[1] = xsl|xsr|(mlr&~(~I&J))|(sbr&~I&J);
+assign COUTSel[0] = (adr&~I&J)|((mlr|sbr)&~(~I&J))|(sbm|sbi);
 
 
 endmodule
