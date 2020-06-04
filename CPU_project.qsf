@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC7C7F23C8
-set_global_assignment -name TOP_LEVEL_ENTITY ALU3
+set_global_assignment -name TOP_LEVEL_ENTITY CPU
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "14:25:21  MAY 15, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
@@ -49,6 +49,7 @@ set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name VERILOG_FILE JMRDecoder.v
 set_global_assignment -name VERILOG_FILE RAMTest.v
 set_global_assignment -name VERILOG_FILE RAM.v
 set_global_assignment -name VERILOG_FILE State_Select.v
@@ -118,6 +119,7 @@ set_global_assignment -name VERILOG_FILE ShiftDecoder3.v
 set_global_assignment -name VERILOG_FILE LIFOBlock.v
 set_global_assignment -name VERILOG_FILE ALUDecoder2.v
 set_global_assignment -name QIP_FILE SECONDMUX5.qip
+set_global_assignment -name SOURCE_FILE db/CPU_project.cmp.rdb
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
