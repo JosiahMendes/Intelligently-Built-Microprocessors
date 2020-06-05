@@ -1,0 +1,199 @@
+Archive Project report for CPU_project
+Fri Jun 05 00:20:51 2020
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------+
+; Archive Project Summary                                        ;
++------------------------+---------------------------------------+
+; Archive Project Status ; Successful - Fri Jun 05 00:20:51 2020 ;
+; Revision Name          ; CPU_project                           ;
+; Top-level Entity Name  ; CPU_Pipelined_CleanedUp               ;
+; Family                 ; Cyclone V                             ;
++------------------------+---------------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Source control' contains:
+    Info: Project source and settings files
+    Info: Automatically detected source files
+Warning: Hierarchical Platform Designer systems and custom IP components(_hw.tcl and associated files) are not archived by the Quartus Archiver
+Info: Archive will store files relative to the closest common parent directory
+Info (13213): Using common directory C:/Users/Josiah Mendes/Documents/GitHub/CPU-Project/
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated archive 'C:/Users/Josiah Mendes/Documents/CPU_Project.qar'
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated report 'CPU_project.archive.rpt'
+Info (23030): Evaluation of Tcl script c:/intelfpga_lite/19.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4828 megabytes
+    Info: Processing ended: Fri Jun 05 00:20:51 2020
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++--------------------------------------------------------------+
+; Files Archived                                               ;
++--------------------------------------------------------------+
+; File Name                                                    ;
++--------------------------------------------------------------+
+; ADD.bsf                                                      ;
+; ADD.qip                                                      ;
+; ADD.v                                                        ;
+; ADD_bb.v                                                     ;
+; ADD_SUB.bsf                                                  ;
+; ADD_SUB.qip                                                  ;
+; ADD_SUB.v                                                    ;
+; ADD_SUB_bb.v                                                 ;
+; ALU.bdf                                                      ;
+; ALU2.bdf                                                     ;
+; ALU3.bdf                                                     ;
+; ALU3CleanedUp.bdf                                            ;
+; ALUDecoder.v                                                 ;
+; ALUDecoder2.v                                                ;
+; ALUDecoder3.v                                                ;
+; And16Low.v                                                   ;
+; BAND16.v                                                     ;
+; BBO.bdf                                                      ;
+; BBOShell.bdf                                                 ;
+; BNAND16.v                                                    ;
+; BNOR16.v                                                     ;
+; BOR16.v                                                      ;
+; BUSMUX_SHIFTS.bsf                                            ;
+; BUSMUX_SHIFTS.qip                                            ;
+; BUSMUX_SHIFTS.v                                              ;
+; BUSMUX_SHIFTS_bb.v                                           ;
+; c:/intelfpga_lite/19.1/quartus/bin64/assignment_defaults.qdf ;
+; CBitIdentifier.v                                             ;
+; CPU.bdf                                                      ;
+; CPU_Pipelined.bdf                                            ;
+; CPU_Pipelined_CleanedUp.bdf                                  ;
+; CPU_project.qpf                                              ;
+; CPU_project.qsf                                              ;
+; db/CPU_project.cmp.rdb                                       ;
+; Decoder.v                                                    ;
+; Decoder_Pipelined.v                                          ;
+; Decoder_PipelinedCleanedUp.v                                 ;
+; DFF3.bdf                                                     ;
+; fullAdder.v                                                  ;
+; fullAdderNoC.v                                               ;
+; halfAdder.v                                                  ;
+; halfAdderNoC.v                                               ;
+; IndividualInstructionTests/LDILDASTATest.mif                 ;
+; JMRDecoder.v                                                 ;
+; lcgdata.mif                                                  ;
+; LIFOBlock.v                                                  ;
+; MUX2.bsf                                                     ;
+; MUX2.qip                                                     ;
+; MUX2.v                                                       ;
+; MUX2_bb.v                                                    ;
+; MUX3.bsf                                                     ;
+; MUX3.qip                                                     ;
+; MUX3.v                                                       ;
+; MUX3_bb.v                                                    ;
+; MUX4.bsf                                                     ;
+; MUX4.qip                                                     ;
+; MUX4.v                                                       ;
+; MUX4_bb.v                                                    ;
+; MUX4to1.bsf                                                  ;
+; MUX4to1.qip                                                  ;
+; MUX4to1.v                                                    ;
+; MUX4to1_bb.v                                                 ;
+; MUX5.bsf                                                     ;
+; MUX5.qip                                                     ;
+; MUX5.v                                                       ;
+; MUX5_bb.v                                                    ;
+; MUX8.bsf                                                     ;
+; MUX8.qip                                                     ;
+; MUX8.v                                                       ;
+; MUX8_bb.v                                                    ;
+; NOT16.v                                                      ;
+; OR15.v                                                       ;
+; PC_MUX.bsf                                                   ;
+; PC_MUX.qip                                                   ;
+; PC_MUX.v                                                     ;
+; PC_MUX_bb.v                                                  ;
+; RAM.v                                                        ;
+; RAMTest.v                                                    ;
+; SecondFullAdder.v                                            ;
+; SECONDMUX5.bsf                                               ;
+; SECONDMUX5.qip                                               ;
+; SECONDMUX5.v                                                 ;
+; SECONDMUX5_bb.v                                              ;
+; ShiftDecoder.v                                               ;
+; ShiftDecoder2.v                                              ;
+; ShiftDecoder3.v                                              ;
+; ShiftDecoderShell.bdf                                        ;
+; ShiftsAndBFE.bdf                                             ;
+; ShiftsAndBFE2.bdf                                            ;
+; ShiftsAndBFEShell.bdf                                        ;
+; State_Machine.bdf                                            ;
+; State_MachinePipelined.bdf                                   ;
+; State_Output.v                                               ;
+; State_Output_Pipelined.v                                     ;
+; State_Select.v                                               ;
+; State_Select_Pipelined.v                                     ;
+; Test_Data.mif                                                ;
+; Test_Instructs.mif                                           ;
+; TWOINPUTMUX.bsf                                              ;
+; TWOINPUTMUX.qip                                              ;
+; TWOINPUTMUX.v                                                ;
+; TWOINPUTMUX_bb.v                                             ;
+; Wallace_multiplier.bdf                                       ;
+; Wallace_Multiplier_With_Carry.bdf                            ;
+; Waveform.vwf                                                 ;
+; Waveform1.vwf                                                ;
+; Waveform2.vwf                                                ;
+; Waveform3.vwf                                                ;
+; Waveform4.vwf                                                ;
+; Waveform5.vwf                                                ;
+; Waveform6.vwf                                                ;
+; Waveform7.vwf                                                ;
+; Waveform8.vwf                                                ;
+; Waveform9.vwf                                                ;
+; Waveform10.vwf                                               ;
+; Waveform11.vwf                                               ;
+; Waveform13.vwf                                               ;
+; Waveform15.vwf                                               ;
+; Waveform16.vwf                                               ;
+; XNOR16.v                                                     ;
+; XOR16.v                                                      ;
+; XSL.bdf                                                      ;
+; XSR.bdf                                                      ;
++--------------------------------------------------------------+
+
+
