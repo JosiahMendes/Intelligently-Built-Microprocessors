@@ -16,7 +16,9 @@ module Decoder_MultiplierPipelined(
 	output mux2_sel,
 	output reg[1:0] pcmux_sel,
 	
-	output pushEn, popEn
+	output pushEn, popEn,
+	
+	output Dec_en
 	
 	);
 
@@ -95,7 +97,7 @@ assign r3en = (ldi &  D &  E & e1) | (lda &  D &  E & e2) | (ldr &  F &  G & e2)
 
 //assign mux1_sel = (ldi&e1);
 assign mux2_sel = (ldr&e1)|(sti&e1);
-
+assign Dec_en = G;
 
 assign carry_en = ((adr|sbr|xsl|xsr) & e1 & F) | ((adi|sbi) & e1) | ((adm|sbm) & e2) | (mlr & e2 & F);
 
