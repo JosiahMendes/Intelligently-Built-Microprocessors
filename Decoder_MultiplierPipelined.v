@@ -110,7 +110,7 @@ always @(*)
 	else if (pop & e1 & ~G & !stackEmpty)
 		mux1_sel[1:0] = 2'b11;
 	else 
-		mux1_sel[1:0] = 2'b00;
+		mux1_sel[1:0] = 2'bX;
 
 	
 always @(*)
