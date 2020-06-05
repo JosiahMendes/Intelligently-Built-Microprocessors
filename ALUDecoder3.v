@@ -41,13 +41,13 @@ assign sti = ~A &  B &  C &  D &  E;
 assign jmr =  A &  B &  C & ~D & ~E;
 
 
-assign RnSelect[2] = stk;
-assign RnSelect[1] = ((adr|sbr|mlr|bbo|jmr)&M)|((adi|sbi)&F)|((ldr|sti)&I);
-assign RnSelect[0] = ((adr|sbr|mlr|bbo|jmr)&N)|((adi|sbi)&G)|((ldr|sti)&J)|((adm|sbm)&E);
+assign RnSelect[2] = stk&G;
+assign RnSelect[1] = ((adr|sbr|mlr|bbo|jmr)&M)|((adi|sbi)&F)|((ldr|sti)&I)|stk&H;
+assign RnSelect[0] = ((adr|sbr|mlr|bbo|jmr)&N)|((adi|sbi)&G)|((ldr|sti)&J)|((adm|sbm)&E)|stk&I;
 
-assign RmSelect[2] = (adm|sbm|adi|sbi)|((ldr|sti)&~H)&(stk&G);
-assign RmSelect[1] = ((adr|sbr|mlr|bbo|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H)|(stk&(G|H));
-assign RmSelect[0] = ((adr|sbr|mlr|bbo|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi)|(stk&(G|I));
+assign RmSelect[2] = (adm|sbm|adi|sbi)|((ldr|sti)&~H)|stk;
+assign RmSelect[1] = ((adr|sbr|mlr|bbo|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H)|stk;
+assign RmSelect[0] = ((adr|sbr|mlr|bbo|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi);
 
 assign RxSelect[1] = ((adr|sbr|mlr|jmr)&K);
 assign RxSelect[0] = ((adr|sbr|mlr|jmr)&L);

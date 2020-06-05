@@ -1,6 +1,5 @@
 module Decoder_PipelinedCleanedUp(
 	input [15:0] INSTR,
-	output reg [15:0] q,
 	output reg [1:0]out_sel,
 	
 	input fe, e1, e2, eq, stackFull, stackEmpty, jmrCond,
@@ -76,7 +75,7 @@ assign psh = stk & ~F;
 assign pop = stk & F;
 
 
-assign pc_cnten = (fe|e2)|e1 & ~extra1 & (adr | adm | adi | sbr| sbm | sbi | mlr | xsl | xsr | bbo | ldi| sta | ldr | sti | lda | (jeq &!eq) | (jnq & eq) | (jmr & !jmrCond) | psh | (pop & (stackEmpty | !(G & ~H & ~I))));
+assign pc_cnten = (fe|e2)|e1 & ~extra1;
 
 
 assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond)|(pop & G & ~H & ~I & !stackEmpty));
@@ -112,13 +111,6 @@ always @(*)
 	else 
 		mux1_sel[1:0] = 2'b00;
 
-		
-always @(*)
-	if ((ldi&e1)|(lda&e1)|(sta&e1)) begin 
-		 q[15:11] =  5'b0;
-		 q[10:0] = INSTR[10:0];
-	end else 
-		q[15:0] = INSTR[10:0];
 	
 always @(*)
 	if (sta&e1)
