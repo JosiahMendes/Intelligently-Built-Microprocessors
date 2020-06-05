@@ -159,7 +159,7 @@ public:
                             }
                         } else { // 0111x
                             if(instruction_binary[4] == '0') { // 01110 LDR
-                                opcode = "LDI";
+                                opcode = "LDR";
                                 opcode_length = 5;
                             } else { // 01111 STI
                                 opcode = "STI";
@@ -202,8 +202,9 @@ public:
                     }
                 }
             }
+            //cout << "instruction: " << instruction << " binary: " << instruction_binary << " opcode: " << opcode << endl;
             for(int i = opcode_length; i < 16; i++) {
-                immediate = instruction_binary[i];
+                immediate = immediate + instruction_binary[i];
             }
             assert(immediate.length() == 16-opcode_length);
             m_instructions.insert(pair<int,pair<string,string>>(order,make_pair(opcode,immediate)));
@@ -262,7 +263,8 @@ public:
                 STP(current_immediate);
             }
         } else { // didn't find instruction
-            cout << "no instruction found for the current pc value: " << pc;
+            cout << "no instruction found for the current pc value: " << pc << endl;
+            STP("00000000000");
         }
         show_content();
     }
@@ -270,7 +272,7 @@ public:
     // run the instructions stored in m_instructions
     void run() {
         show_content();
-        for(int i = 0; i < m_instructions.size(); i++) {
+        while(1) {
             execute();
             if(stop) {
                 return;
@@ -307,7 +309,7 @@ public:
         }
         cout << "Carry: " << m_carry << endl;
         cout << "Instruction: 0x" << ir << " // " << ir_explained << endl;
-        cout << "--MEMORY--" << endl;
+        cout << "--MEMORY--" << " size: " << memory.size() << endl;
         for(map<string,string>::iterator it = memory.begin(); it != memory.end(); ++it) {
             cout << "Location: " << it->first << " (0x" << binary_to_hex(it->first) << ")" << " " << "Data: " << it->second << " (0x" << binary_to_hex(it->second) << ")" << endl;
         }
@@ -352,10 +354,10 @@ public:
                 result.second = true;
             }
         } else if(immediate_offset == "10") { // Rm logical shift left by Rx
-            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = addition(register_Rn, shifted_Rm, carry_in);
         } else if(immediate_offset == "11") { // Rm logical shift right by Rx
-            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = addition(register_Rn, shifted_Rm, carry_in);
         }
         assert(result.first.length() == 16);
@@ -456,10 +458,10 @@ public:
                 result.second = true;
             }
         } else if(immediate_offset == "10") { // Rm logical shift left by Rx
-            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = subtraction(register_Rn, shifted_Rm, carry_in);
         } else if(immediate_offset == "11") { // Rm logical shift right by Rx
-            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = subtraction(register_Rn, shifted_Rm, carry_in);
         }
         assert(result.first.length() == 16);
@@ -560,10 +562,10 @@ public:
                 result.second = true;
             }
         } else if(immediate_offset == "10") { // Rm logical shift left by Rx
-            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = left_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = multiplication(register_Rn, shifted_Rm, carry_in);
         } else if(immediate_offset == "11") { // Rm logical shift right by Rx
-            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2));
+            string shifted_Rm = right_shift(register_Rm, stoi(register_Rx,nullptr,2)%16);
             result = multiplication(register_Rn, shifted_Rm, carry_in);
         }
         assert(result.first.length() == 16);
@@ -953,6 +955,8 @@ public:
             pushed_value = reg3;
         } else if(which_register == "100") {
             pushed_value = decimal_to_binary(pc);
+        } else {
+            cout << "wrong register value" << endl;
         }
         assert(pushed_value.length() == 16);
         pair<string,bool> result;
@@ -1299,9 +1303,9 @@ public:
         bool overflow = false;
         assert(Rn.length() == 16);
         assert(Rm.length() == 16);
-        int Rn_value = stoi(Rn, nullptr, 2);
-        int Rm_value = stoi(Rm, nullptr, 2);
-        int result = Rn_value * Rm_value + cin;
+        long Rn_value = stol(Rn, nullptr, 2);
+        long Rm_value = stol(Rm, nullptr, 2);
+        long result = Rn_value * Rm_value + cin;
         string result_binary = decimal_to_binary(result);
         if(stoi(result_binary, nullptr, 2) < result) { // overflow happened
             overflow = true;
@@ -1384,13 +1388,13 @@ public:
         cout << decimal_to_binary(n) << endl;
     }
 
-    string decimal_to_binary(int decimal_value) {
+    string decimal_to_binary(long decimal_value) {
         bool positive_value = true;
         if(decimal_value < 0) {
             positive_value = false;
         }
         string binary_value = "";
-        int n = abs(decimal_value);
+        long n = abs(decimal_value);
         while(n != 0) {
             if(n % 2 == 0) {
                 binary_value = "0" + binary_value;
@@ -1423,7 +1427,7 @@ public:
                 }
             }
             temp = "1" + temp;
-            int int_temp = stoi(temp,nullptr,2) + 1;
+            long int_temp = stol(temp,nullptr,2) + 1;
             string twos_complement_binary = "";
             while(int_temp != 0) {
                 if(int_temp % 2 == 0) {
@@ -1442,9 +1446,12 @@ public:
             } else if(twos_complement_binary.length() > 16) { // discard the excess bits
                 string t = "";
                 for(int i = twos_complement_binary.length()-1; i >= twos_complement_binary.length()-16; i--) {
-                    t = twos_complement_binary[i];
+                    t = twos_complement_binary[i] + t;
                 }
                 twos_complement_binary = t;
+            }
+            if(pc == 1152) {
+                cout << twos_complement_binary << endl;
             }
             assert(twos_complement_binary.length() == 16);
             binary_value = twos_complement_binary;
