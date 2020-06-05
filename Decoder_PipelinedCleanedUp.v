@@ -75,7 +75,7 @@ assign psh = stk & ~F;
 assign pop = stk & F;
 
 
-assign pc_cnten = (fe|e2)|e1 & ~extra1;
+assign pc_cnten = (fe|e2)|(e1 & ~extra1 & ~stp);
 
 
 assign pc_sload = e1 & ((jmp)|(jeq & eq)|(jnq & !eq)|(jmr & jmrCond)|(pop & G & ~H & ~I & !stackEmpty));
