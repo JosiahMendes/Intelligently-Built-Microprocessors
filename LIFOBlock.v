@@ -1,12 +1,12 @@
-module LIFOBlock#(parameter depth = 16, log2_depth = 4, log2_depthp1 = 5)
+module LIFOBlock #(parameter depth = 16, log2_depth = 4, log2_depthp1 = 5)
 (
 	input[15:0] data,
 	input reset, clock, push, pop,
 
 	output reg empty, full,
 	output [15:0] q,
-	output reg [5-1:0] count
-	);
+	output reg [log2_depthp1-1:0] count
+);
 
 
 
