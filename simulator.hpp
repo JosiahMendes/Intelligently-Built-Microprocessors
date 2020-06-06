@@ -22,6 +22,7 @@ private:
     vector<string> stack; // stack with 16 bit data stored
     string ir; // current instruction (in hex)
     string ir_explained; // ir in words e.g. ADR 0000
+    int n_instructions_executed;
 public:
     CPU() {
         stop = false;
@@ -33,6 +34,7 @@ public:
         m_carry = 0;
         ir = "0000";
         ir_explained = "";
+        n_instructions_executed = 0;
     }
 
     // read instructions and store them in m_instructions
@@ -281,7 +283,9 @@ public:
         show_content();
         while(1) {
             execute();
+            n_instructions_executed++;
             if(stop) {
+                cout << "n_instructions: " << n_instructions_executed << endl;
                 return;
             }
         }
