@@ -213,6 +213,13 @@ public:
         }
     }
 
+    // set data
+    void store(string location, string data) {
+        assert(location.length() == 16);
+        assert(data.length() == 16);
+        memory.insert(pair<string,string>(location,data));
+    }
+
     // execute the corresponding instruction
     void execute() {
         map<int,pair<string,string>>::iterator it = m_instructions.find(pc);
@@ -936,7 +943,6 @@ public:
         }
         ir = binary_to_hex("01101"+immediate);
         ir_explained = "STK " + immediate;
-        pc++;
     }
 
     // adding to the stack
@@ -971,6 +977,7 @@ public:
         }
         assert(result.first.length() == 16);
         stack.push_back(result.first);
+        pc++;
     }
 
     // removing from the stack
@@ -986,14 +993,22 @@ public:
         assert(popped_value.length() == 16);
         if(which_register == "000") {
             reg0 = popped_value;
+            pc++;
         } else if(which_register == "001") {
             reg1 = popped_value;
+            pc++;
         } else if(which_register == "010") {
             reg2 = popped_value;
+            pc++;
         } else if(which_register == "011") {
             reg3 = popped_value;
+            pc++;
         } else if(which_register == "100") {
-            pc = stoi(popped_value,nullptr,2);
+            if(stack.empty()) {
+                pc++;
+            } else {
+                pc = stoi(popped_value,nullptr,2);
+            }
         }
         if(!stack.empty()) {
             stack.resize(stack.size()-1);
