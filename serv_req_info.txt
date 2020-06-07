@@ -6,3 +6,11 @@
 	<version>Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition</version>
 </internal_error>
 
+<internal_error>
+	<executable>quartus_map.exe</executable>
+	<sub_system>MEM</sub_system>
+	<error>*** Fatal Error: Out of memory in module quartus_map.exe (4984 megabytes used)</error>
+	<date>Sun Jun 07 01:12:37 2020</date>
+	<version>Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition</version>
+</internal_error>
+

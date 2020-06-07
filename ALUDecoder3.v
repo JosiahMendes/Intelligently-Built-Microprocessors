@@ -1,4 +1,9 @@
-module ALUDecoder3(input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, output Shift_in, output ShiftCOUTSel, output [3:0] SL, output [3:0] SR, output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel);
+module ALUDecoder3(
+input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, 
+output Shift_in, output ShiftCOUTSel, output [3:0] SL, output [3:0] SR, 
+output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, 
+output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel
+);
 
 wire A, B,C, D, E, F, G, H, I, J, K, L, M, N, O, P;
 

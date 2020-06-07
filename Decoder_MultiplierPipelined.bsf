@@ -21,9 +21,9 @@ https://fpgasoftware.intel.com/eula.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 232 352)
+	(rect 16 16 232 416)
 	(text "Decoder_MultiplierPipelined" (rect 5 0 111 12)(font "Arial" ))
-	(text "inst" (rect 8 320 20 332)(font "Arial" ))
+	(text "inst" (rect 8 384 20 396)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -206,7 +206,35 @@ https://fpgasoftware.intel.com/eula.
 		(text "popEn" (rect 170 299 195 311)(font "Arial" ))
 		(line (pt 216 304)(pt 200 304)(line_width 1))
 	)
+	(port
+		(pt 216 320)
+		(output)
+		(text "Dec_en" (rect 0 0 31 12)(font "Arial" ))
+		(text "Dec_en" (rect 164 315 195 327)(font "Arial" ))
+		(line (pt 216 320)(pt 200 320)(line_width 1))
+	)
+	(port
+		(pt 216 336)
+		(output)
+		(text "RnSelect[2..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "RnSelect[2..0]" (rect 139 331 195 343)(font "Arial" ))
+		(line (pt 216 336)(pt 200 336)(line_width 3))
+	)
+	(port
+		(pt 216 352)
+		(output)
+		(text "RmSelect[2..0]" (rect 0 0 60 12)(font "Arial" ))
+		(text "RmSelect[2..0]" (rect 135 347 195 359)(font "Arial" ))
+		(line (pt 216 352)(pt 200 352)(line_width 3))
+	)
+	(port
+		(pt 216 368)
+		(output)
+		(text "RxSelect[1..0]" (rect 0 0 55 12)(font "Arial" ))
+		(text "RxSelect[1..0]" (rect 140 363 195 375)(font "Arial" ))
+		(line (pt 216 368)(pt 200 368)(line_width 3))
+	)
 	(drawing
-		(rectangle (rect 16 16 200 320)(line_width 1))
+		(rectangle (rect 16 16 200 384)(line_width 1))
 	)
 )
