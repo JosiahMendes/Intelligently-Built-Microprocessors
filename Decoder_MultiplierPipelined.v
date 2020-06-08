@@ -16,9 +16,9 @@ module Decoder_MultiplierPipelined(
 	output mux2_sel,
 	output reg[1:0] pcmux_sel,
 	
-	output pushEn, popEn,
+	output pushEn, popEn, Dec_en,
 	
-	output Dec_en
+	output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect
 	
 	);
 
@@ -104,6 +104,19 @@ assign carry_en = ((adr|sbr|xsl|xsr) & e1 & F) | ((adi|sbi) & e1) | ((adm|sbm) &
 assign pushEn = (psh & e1);
 assign popEn = (pop & e1);
 
+assign Dec_en=G;
+
+assign RnSelect[2] = stk&G;
+assign RnSelect[1] = ((adr|sbr|mlr|bbo|jmr)&M)|((adi|sbi)&F)|((ldr|sti)&I)|stk&H;
+assign RnSelect[0] = ((adr|sbr|mlr|bbo|jmr)&N)|((adi|sbi)&G)|((ldr|sti)&J)|((adm|sbm)&E)|stk&I;
+
+assign RmSelect[2] = (adm|sbm|adi|sbi)|((ldr|sti)&~H)|stk;
+assign RmSelect[1] = ((adr|sbr|mlr|bbo|xsl|xsr)&O)|((ldr|sti)&K)|((ldr|sti)&~H)|stk;
+assign RmSelect[0] = ((adr|sbr|mlr|bbo|xsl|xsr)&P)|((ldr|sti)&L)|(adi|sbi);
+
+assign RxSelect[1] = ((adr|sbr|mlr|jmr)&K);
+assign RxSelect[0] = ((adr|sbr|mlr|jmr)&L);
+
 always @(*)
 	if (ldi&e1)
 		mux1_sel[1:0] = 2'b01;
@@ -112,7 +125,7 @@ always @(*)
 	else if (pop & e1 & ~G & !stackEmpty)
 		mux1_sel[1:0] = 2'b11;
 	else 
-		mux1_sel[1:0] = 2'b00;
+		mux1_sel[1:0] = 2'bX;
 
 	
 always @(*)

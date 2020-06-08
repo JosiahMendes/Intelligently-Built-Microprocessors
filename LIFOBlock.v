@@ -1,14 +1,15 @@
 module LIFOBlock #(parameter depth = 16, log2_depth = 4, log2_depthp1 = 5)
 (
 	input[15:0] data,
-	input reset, clock, push, pop,
+	input clock, push, pop,
 
 	output reg empty, full,
-	output [15:0] q,
-	output reg [log2_depthp1-1:0] count
+	output [15:0] q
+
 );
 
 
+reg [log2_depthp1-1:0] count;
 
 wire writing = push && ( count < depth || pop);
 wire reading = pop && count > 0;
@@ -16,9 +17,7 @@ wire reading = pop && count > 0;
 reg[log2_depthp1-1:0] next_count;
 
 always @(*)
-	if(reset)
-		next_count = 0;
-	else if (writing && !reading)
+	if (writing && !reading)
 		next_count = count+1;
 	else if (reading && !writing)
 		next_count = count-1;
@@ -56,9 +55,7 @@ always @(posedge clock)
 
 reg muxSelector;
 always @(posedge clock)
-	if(reset)
-		muxSelector <= 0;
-	else if(writing)
+	if(writing)
 		muxSelector <= 0;
 	else if (reading)
 		muxSelector <= 1;
