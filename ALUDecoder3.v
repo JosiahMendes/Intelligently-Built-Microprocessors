@@ -2,7 +2,7 @@ module ALUDecoder3(
 input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, 
 output Shift_in, output Shift_Right, output [3:0] SN, 
 output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, 
-output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel
+output CINadd_sub, output add_sub, output [1:0] ASSelect, output [1:0] OPSel, output [2:0] COUTSel
 );
 
 wire A, B,C, D, E, F, G, H, I, J, K, L, M, N, O, P;
@@ -73,13 +73,11 @@ assign CINadd_sub = ((adr|mlr)&((~G&H)|(G&~H&CARRY)|(G&H&Rm[15]))) | (sbr&((~G&~
 
 assign add_sub = !(sbr|sbm|sbi|(stk&J));
 
-
-assign multiplication = mlr;
-
-assign BBO = bbo;
+assign ASSelect[1] = bbo;
+assign ASSelect[0] = mlr;
 
 assign OPSel[1] = xsl|xsr;
-assign OPSel[0] = ((adr|sbr|mlr)&~I&J)|bbo;
+assign OPSel[0] = ((adr|sbr|mlr)&~I&J);
 
 assign COUTSel[2] = (mlr&~I&J)|(sbi|sbm|sbr);
 assign COUTSel[1] = xsl|xsr|(mlr&~(~I&J))|(sbr&~I&J);
