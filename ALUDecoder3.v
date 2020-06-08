@@ -1,6 +1,6 @@
 module ALUDecoder3(
 input [15:0] INSTR, input CARRY, input [15:0] Rn, input [15:0] Rm, input [15:0] Rx, 
-output Shift_in, output ShiftCOUTSel, output [3:0] SL, output [3:0] SR, 
+output Shift_in, output Shift_Right, output [3:0] SN, 
 output [2:0] RnSelect, output [2:0] RmSelect, output [1:0] RxSelect, 
 output CINadd_sub, output add_sub, output multiplication, output BBO, output [1:0] OPSel, output [2:0] COUTSel
 );
@@ -61,18 +61,12 @@ assign RxSelect[0] = ((adr|sbr|mlr|jmr)&L);
 
 assign Shift_in = (xsl|xsr)&((~G&H)|(G&~H&CARRY)|(G&H&Rm[15]));
 
-assign ShiftCOUTSel = xsl;
+assign Shift_Right = (xsr)|((adr|sbr|mlr) & I & J);
 
-
-assign SL[3] = (xsl&I)|( (adr|sbr|mlr) & I & ~J & Rx[3])|( (ldr|sti)&H&M);
-assign SL[2] = (xsl&J)|( (adr|sbr|mlr) & I & ~J & Rx[2])|( (ldr|sti)&H&N);
-assign SL[1] = (xsl&K)|( (adr|sbr|mlr) & I & ~J & Rx[1])|( (ldr|sti)&H&O);
-assign SL[0] = (xsl&L)|( (adr|sbr|mlr) & I & ~J & Rx[0])|( (ldr|sti)&H&P);
-
-assign SR[3] = (xsr&I)|( (adr|sbr|mlr) & I & J & Rx[3]);
-assign SR[2] = (xsr&J)|( (adr|sbr|mlr) & I & J & Rx[2]);
-assign SR[1] = (xsr&K)|( (adr|sbr|mlr) & I & J & Rx[3]);
-assign SR[0] = (xsr&L)|( (adr|sbr|mlr) & I & J & Rx[3]);
+assign SN[3] = ((xsl|xsr)&I)|( (adr|sbr|mlr) & I & Rx[3])|( (ldr|sti)&H&M);
+assign SN[2] = ((xsl|xsr)&J)|( (adr|sbr|mlr) & I & Rx[2])|( (ldr|sti)&H&N);
+assign SN[1] = ((xsl|xsr)&K)|( (adr|sbr|mlr) & I & Rx[1])|( (ldr|sti)&H&O);
+assign SN[0] = ((xsl|xsr)&L)|( (adr|sbr|mlr) & I & Rx[0])|( (ldr|sti)&H&P);
 
 
 assign CINadd_sub = ((adr|mlr)&((~G&H)|(G&~H&CARRY)|(G&H&Rm[15]))) | (sbr&((~G&~H)|(G&~H&~CARRY)|(G&H&~Rm[15]))) | (sbm|sbi|(stk&J));
