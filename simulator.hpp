@@ -222,6 +222,14 @@ public:
         memory.insert(pair<string,string>(location,data));
     }
 
+    // set data with locationg datatype int instead
+    void store(int location, string data) {
+        assert(data.length() == 16);
+        string location_binary = decimal_to_binary(location);
+        assert(location_binary.length() == 16);
+        memory.insert(pair<string,string>(location_binary,data));
+    }
+
     // execute the corresponding instruction
     void execute() {
         map<int,pair<string,string>>::iterator it = m_instructions.find(pc);
