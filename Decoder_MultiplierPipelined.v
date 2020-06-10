@@ -125,7 +125,7 @@ always @(*)
 	else if (pop & e1 & ~G & !stackEmpty)
 		mux1_sel[1:0] = 2'b11;
 	else 
-		mux1_sel[1:0] = 2'bX;
+		mux1_sel[1:0] = 2'b00;
 
 	
 always @(*)
@@ -136,7 +136,7 @@ always @(*)
 	else if (jmr&e1)
 		out_sel[1:0] = INSTR[1:0];
 	else 
-		out_sel[1:0] = 2'b0;
+		out_sel[1:0] = 2'b00;
 
 
 always @(*)
