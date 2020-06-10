@@ -996,16 +996,24 @@ public:
         }
         assert(popped_value.length() == 16);
         if(which_register == "000") {
-            reg0 = popped_value;
+            if(!stack.empty()) {
+                reg0 = popped_value;
+            }
             pc++;
         } else if(which_register == "001") {
-            reg1 = popped_value;
+            if(!stack.empty()) {
+                reg1 = popped_value;
+            }
             pc++;
         } else if(which_register == "010") {
-            reg2 = popped_value;
+            if(!stack.empty()) {
+                reg2 = popped_value;
+            }
             pc++;
         } else if(which_register == "011") {
-            reg3 = popped_value;
+            if(!stack.empty()) {
+                reg3 = popped_value;
+            }
             pc++;
         } else if(which_register == "100") {
             if(stack.empty()) {
@@ -1189,7 +1197,7 @@ public:
                 jump = true;
             }
         } else if(condition == "111") {
-            if(m_carry = 1) {
+            if(m_carry == 1) {
                 jump = true;
             }
         }
