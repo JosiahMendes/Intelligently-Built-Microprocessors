@@ -1,0 +1,1640 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML><HEAD>
+<TITLE>Thermal Power Dissipation by Hierarchy</TITLE>
+
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="jquery-ui/1.10.2/css/smoothness/jquery-ui-1.10.2.custom.min.css">
+<link rel="stylesheet" type="text/css" href="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.css">
+<link rel="stylesheet" type="text/css" href="css/override.css">
+
+<script type="text/javascript" src="jquery/1.11.3/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="jquery-ui/1.10.2/js/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="jquery-layout/1.3.0.rc30.79/jquery.layout-1.3.0.rc30.79.min.js"></script>
+
+
+</HEAD>
+
+<BODY>
+<TABLE>
+<thead><TR  bgcolor="#BFBFBF">
+<TH>Compilation Hierarchy Node</TH>
+<TH>Total Thermal Power by Hierarchy (1)</TH>
+<TH>Block Thermal Dynamic Power (1)</TH>
+<TH>Block Thermal Static Power (1)(2)</TH>
+<TH>Routing Thermal Dynamic Power (1)</TH>
+<TH>Full Hierarchy Name</TH>
+</TR>
+</thead><tbody><TR >
+<TD >|CPU_MultiplierPipelinedNoOutputs</TD>
+<TD >14.17 mW (5.22 mW)</TD>
+<TD >7.86 mW (0.31 mW)</TD>
+<TD >0.79 mW (0.79 mW)</TD>
+<TD >5.52 mW (4.12 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|hard_block:auto_generated_inst</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|hard_block:auto_generated_inst</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:CARRY</TD>
+<TD >0.04 mW (0.04 mW)</TD>
+<TD >0.02 mW (0.02 mW)</TD>
+<TD >--</TD>
+<TD >0.02 mW (0.02 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_ff:CARRY</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|RAM:data</TD>
+<TD >2.71 mW (0.00 mW)</TD>
+<TD >2.71 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAM:data</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram:altsyncram_component</TD>
+<TD >2.71 mW (0.00 mW)</TD>
+<TD >2.71 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAM:data|altsyncram:altsyncram_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram_5qj1:auto_generated</TD>
+<TD >2.71 mW (2.71 mW)</TD>
+<TD >2.71 mW (2.71 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAM:data|altsyncram:altsyncram_component|altsyncram_5qj1:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|State_MachinePipelined:inst</TD>
+<TD >0.06 mW (0.00 mW)</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|State_MachinePipelined:inst</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|DFF3:inst</TD>
+<TD >0.06 mW (0.06 mW)</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >--</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|State_MachinePipelined:inst|DFF3:inst</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|State_Select_Pipelined:inst2</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|State_MachinePipelined:inst|State_Select_Pipelined:inst2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|RAMTest:inst1</TD>
+<TD >1.42 mW (0.00 mW)</TD>
+<TD >1.42 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAMTest:inst1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram:altsyncram_component</TD>
+<TD >1.42 mW (0.00 mW)</TD>
+<TD >1.42 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAMTest:inst1|altsyncram:altsyncram_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram_0nk1:auto_generated</TD>
+<TD >1.42 mW (1.42 mW)</TD>
+<TD >1.42 mW (1.42 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|RAMTest:inst1|altsyncram:altsyncram_component|altsyncram_0nk1:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|MUX4:inst5</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst5</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst5|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_0tc:auto_generated</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst5|lpm_mux:LPM_MUX_component|mux_0tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|PCIncrement:inst7</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|PCIncrement:inst7</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|ALU4PipelinedMultiplier:inst8</TD>
+<TD >1.42 mW (0.36 mW)</TD>
+<TD >1.17 mW (0.31 mW)</TD>
+<TD >--</TD>
+<TD >0.25 mW (0.05 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|SECONDMUX5:inst</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|SECONDMUX5:inst</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|SECONDMUX5:inst|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_2tc:auto_generated</TD>
+<TD >0.04 mW (0.04 mW)</TD>
+<TD >0.04 mW (0.04 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|SECONDMUX5:inst|lpm_mux:LPM_MUX_component|mux_2tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX4:inst2</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX4:inst2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX4:inst2|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_0tc:auto_generated</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >0.03 mW (0.03 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX4:inst2|lpm_mux:LPM_MUX_component|mux_0tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ADD:inst3</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD:inst3</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_add_sub:LPM_ADD_SUB_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD:inst3|lpm_add_sub:LPM_ADD_SUB_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|add_sub_89i:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD:inst3|lpm_add_sub:LPM_ADD_SUB_component|add_sub_89i:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX3:inst4</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst4</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst4|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_vsc:auto_generated</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst4|lpm_mux:LPM_MUX_component|mux_vsc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|JMRDecoder:inst5</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|JMRDecoder:inst5</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ADD_SUB:inst6</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD_SUB:inst6</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_add_sub:LPM_ADD_SUB_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD_SUB:inst6|lpm_add_sub:LPM_ADD_SUB_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|add_sub_1ih:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ADD_SUB:inst6|lpm_add_sub:LPM_ADD_SUB_component|add_sub_1ih:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX7:inst7</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX7:inst7</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >0.04 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX7:inst7|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_4tc:auto_generated</TD>
+<TD >0.04 mW (0.04 mW)</TD>
+<TD >0.04 mW (0.04 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX7:inst7|lpm_mux:LPM_MUX_component|mux_4tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Wallace_Multiplier_With_Carry:inst9</TD>
+<TD >0.11 mW (0.01 mW)</TD>
+<TD >0.08 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.03 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst138</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst138</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst139</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst139</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst140</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst140</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst141</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst141</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst143</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst143</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst144</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst144</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst145</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst145</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst146</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst146</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst147</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst147</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst148</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst148</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst149</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst149</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst150</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst150</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst151</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst151</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst152</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst152</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst153</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst153</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst154</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst154</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst155</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst155</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst156</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst156</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst157</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst157</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst158</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst158</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst159</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst159</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst160</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst160</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst161</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst161</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst162</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst162</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst163</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst163</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst164</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst164</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst165</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst165</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst166</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst166</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst167</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst167</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst168</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst168</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst169</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst169</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst170</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst170</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst171</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst171</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst172</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst172</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst173</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst173</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst174</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst174</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst175</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst175</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst176</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst176</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst177</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst177</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst178</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst178</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst179</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst179</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst181</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst181</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst182</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst182</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst183</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst183</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst184</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst184</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst185</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst185</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst186</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst186</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst187</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst187</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst188</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst188</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst189</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst189</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst191</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst191</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst192</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst192</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst193</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst193</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst194</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst194</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst195</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst195</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst196</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst196</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst197</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst197</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst198</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst198</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst199</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst199</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst200</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst200</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst201</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst201</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst202</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst202</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst203</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst203</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst204</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst204</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst205</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst205</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst206</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst206</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst207</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst207</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst208</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst208</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst210</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst210</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst211</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst211</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst212</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst212</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst213</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst213</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst214</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst214</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst215</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst215</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst216</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst216</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst217</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst217</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst218</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst218</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst219</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst219</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst221</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst221</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst222</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst222</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst223</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst223</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst224</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst224</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst225</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst225</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst226</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst226</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst227</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst227</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst228</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst228</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst229</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst229</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst230</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst230</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst231</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst231</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst232</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst232</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst233</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst233</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst234</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst234</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst235</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst235</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst236</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst236</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst237</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst237</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst238</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst238</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst239</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst239</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst240</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst240</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst241</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst241</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst242</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst242</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst243</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst243</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst245</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst245</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst247</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst247</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst252</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst252</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst253</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst253</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst254</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst254</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst255</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst255</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst256</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst256</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst257</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst257</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst258</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst258</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst259</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst259</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst260</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst260</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst261</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst261</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst262</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst262</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst263</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst263</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst264</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst264</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst265</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst265</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|halfAdder:inst266</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|halfAdder:inst266</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|fullAdder:inst267</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|fullAdder:inst267</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|CBitIdentifier:inst268</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|Wallace_Multiplier_With_Carry:inst9|CBitIdentifier:inst268</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ALUDecoder3:inst10</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ALUDecoder3:inst10</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|BBO:inst12</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|BBO:inst12</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX8:inst8</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|BBO:inst12|MUX8:inst8</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|BBO:inst12|MUX8:inst8|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_5tc:auto_generated</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|BBO:inst12|MUX8:inst8|lpm_mux:LPM_MUX_component|mux_5tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX3:inst15</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst15</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst15|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_vsc:auto_generated</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst15|lpm_mux:LPM_MUX_component|mux_vsc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|ShiftsAndBFE2:inst16</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX32:inst5</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16|MUX32:inst5</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16|MUX32:inst5|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_kuc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16|MUX32:inst5|lpm_mux:LPM_MUX_component|mux_kuc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|TWOINPUTMUX:inst8</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16|TWOINPUTMUX:inst8</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|ShiftsAndBFE2:inst16|TWOINPUTMUX:inst8|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX5:inst20</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX5:inst20</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX5:inst20|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_erc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX5:inst20|lpm_mux:LPM_MUX_component|mux_erc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|MUX3:inst24</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst24</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst24|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_vsc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|MUX3:inst24|lpm_mux:LPM_MUX_component|mux_vsc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:MULOUTC</TD>
+<TD >0.19 mW (0.19 mW)</TD>
+<TD >0.13 mW (0.13 mW)</TD>
+<TD >--</TD>
+<TD >0.06 mW (0.06 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|lpm_ff:MULOUTC</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:MULOUTD</TD>
+<TD >0.61 mW (0.61 mW)</TD>
+<TD >0.50 mW (0.50 mW)</TD>
+<TD >--</TD>
+<TD >0.11 mW (0.11 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|ALU4PipelinedMultiplier:inst8|lpm_ff:MULOUTD</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|Decoder_MultiplierPipelined:inst9</TD>
+<TD >0.02 mW (0.02 mW)</TD>
+<TD >0.02 mW (0.02 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|Decoder_MultiplierPipelined:inst9</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|MUX4:inst13</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst13</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst13|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_0tc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|MUX4:inst13|lpm_mux:LPM_MUX_component|mux_0tc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|PC_MUX:inst17</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|PC_MUX:inst17</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:LPM_MUX_component</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|PC_MUX:inst17|lpm_mux:LPM_MUX_component</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_qsc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|PC_MUX:inst17|lpm_mux:LPM_MUX_component|mux_qsc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|LIFOBlock:inst18</TD>
+<TD >1.24 mW (0.62 mW)</TD>
+<TD >1.06 mW (0.44 mW)</TD>
+<TD >--</TD>
+<TD >0.17 mW (0.17 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|LIFOBlock:inst18</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram:stack_rtl_0</TD>
+<TD >0.62 mW (0.00 mW)</TD>
+<TD >0.62 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|LIFOBlock:inst18|altsyncram:stack_rtl_0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|altsyncram_kpd1:auto_generated</TD>
+<TD >0.62 mW (0.62 mW)</TD>
+<TD >0.62 mW (0.62 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|LIFOBlock:inst18|altsyncram:stack_rtl_0|altsyncram_kpd1:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|busmux:mux2</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:$00000</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux2|lpm_mux:$00000</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_osc:auto_generated</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux2|lpm_mux:$00000|mux_osc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|busmux:mux3</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux3</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|lpm_mux:$00000</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >0.01 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux3|lpm_mux:$00000</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|mux_osc:auto_generated</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >0.01 mW (0.01 mW)</TD>
+<TD >--</TD>
+<TD >0.00 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|busmux:mux3|lpm_mux:$00000|mux_osc:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_counter:PC</TD>
+<TD >0.40 mW (0.00 mW)</TD>
+<TD >0.16 mW (0.00 mW)</TD>
+<TD >--</TD>
+<TD >0.25 mW (0.00 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_counter:PC</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|cntr_dnh:auto_generated</TD>
+<TD >0.40 mW (0.40 mW)</TD>
+<TD >0.16 mW (0.16 mW)</TD>
+<TD >--</TD>
+<TD >0.25 mW (0.25 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_counter:PC|cntr_dnh:auto_generated</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:R0</TD>
+<TD >0.46 mW (0.46 mW)</TD>
+<TD >0.23 mW (0.23 mW)</TD>
+<TD >--</TD>
+<TD >0.23 mW (0.23 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_ff:R0</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:R1</TD>
+<TD >0.36 mW (0.36 mW)</TD>
+<TD >0.22 mW (0.22 mW)</TD>
+<TD >--</TD>
+<TD >0.14 mW (0.14 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_ff:R1</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:R2</TD>
+<TD >0.39 mW (0.39 mW)</TD>
+<TD >0.24 mW (0.24 mW)</TD>
+<TD >--</TD>
+<TD >0.15 mW (0.15 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_ff:R2</TD>
+</TR>
+</tbody><tbody><TR >
+<TD >&nbsp;&nbsp;&nbsp;&nbsp;|lpm_ff:R3</TD>
+<TD >0.39 mW (0.39 mW)</TD>
+<TD >0.24 mW (0.24 mW)</TD>
+<TD >--</TD>
+<TD >0.15 mW (0.15 mW)</TD>
+<TD >|CPU_MultiplierPipelinedNoOutputs|lpm_ff:R3</TD>
+</TR>
+</tbody></TABLE>
+
+<noscript>JavaScript must be enabled to view the report.</noscript>
+</BODY>
+</HTML>
