@@ -4,6 +4,7 @@ Designers: *Edvard J.S. Holen, Hyunjoon Jeon, Josiah Mendes*
 Report available [here](https://github.com/JosiahMendes/Intelligently-Built-Microprocessors/blob/ClockTesting/report.pdf)
 
 Our promotional demonstration video is available here:
+
 https://user-images.githubusercontent.com/43901878/179426613-c9b9089d-fca9-4c34-9f42-8a4b05303133.mp4
 
 
